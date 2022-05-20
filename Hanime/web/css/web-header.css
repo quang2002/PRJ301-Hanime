@@ -1,0 +1,35 @@
+.web-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.web-header .logo {
+    margin: 10px;
+}
+
+.web-header .nav-links ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.web-header .nav-links li {
+    list-style: none;
+}
+
+.web-header .nav-links li a {
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px 20px;
+    transition: all 200ms;
+}
+
+.web-header .nav-links li a:hover {
+    background-color: rgb(44, 44, 44);
+}
