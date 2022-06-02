@@ -10,17 +10,29 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.PreparedStatement;
+import java.util.Date;
+import java.util.HashMap;
+import models.AuthModel;
+import utilities.TokenGenerator;
 
 /**
  *
  * @author yuyu2
  */
-public class SignupServlet extends HttpServlet {
+public class SigninServlet extends HttpServlet {
+
+    private AuthModel auth;
+    private static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        auth = new AuthModel();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("signup.jsp").forward(request, response);
+        request.getRequestDispatcher("signin.jsp").forward(request, response);
     }
 
     @Override
@@ -28,19 +40,21 @@ public class SignupServlet extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            String email = request.getParameter("email");
-            String gender = request.getParameter("gender");
 
-            try ( PreparedStatement stmt = models.ModelBase.createStatement(
-                    "EXEC [sp_create_account] ?, ?, ?, ?",
-                    username, password, email, gender.equals("m")
-            )) {
-                stmt.execute();
+            if (auth.check(username, password)) {
+                HashMap<String, Object> data = new HashMap<>();
+
+                data.put("user", username);
+                data.put("expired", new Date().getTime());
+
+                String token = TokenGenerator.generate(data, AUTH_SECRET_KEY);
+
+                response.addCookie(new Cookie("token", token));
+                response.sendRedirect(request.getContextPath());
+                return;
             }
         } catch (Exception e) {
-            doGet(request, response);
-            return;
         }
-        response.sendRedirect(request.getContextPath());
+        doGet(request, response);
     }
 }

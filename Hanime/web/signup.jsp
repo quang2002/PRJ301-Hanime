@@ -14,24 +14,59 @@
 
         <!-- link css -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/web-form.css">
     </head>
     <body>
-        <!-- web header -->
-        <%@include file="components/header.jsp" %>
-
         <!-- web content -->
-        <div>
-            <form method="POST" autocomplete="off">
-                <input name="username" placeholder="Username"><br>
-                <input name="password" placeholder="Password"><br>
-                <input name="email" placeholder="Email" type="email"><br>
-                <select name="gender">
-                    <option value="m" selected>Male</option>
-                    <option value="f">Female</option>
-                </select>
-                
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </body>
+    <hanime-body>
+        <form class="web__form" method="post" autocomplete="off" id="signup-form">
+            <object data="assets/frog.svg" width="200"></object>
+
+            <h1>Đăng Kí</h1>
+
+            <div class="web__form__input">
+                <input type="text" name="username" id="username" onchange="webFormInputNotEmpty(this)" required>
+                <label for="username">Tên đăng nhập</label>
+            </div>
+
+            <div class="web__form__input">
+                <input type="password" name="password" id="password" onchange="webFormInputNotEmpty(this)" pattern="\S{8,}" required>
+                <label for="password">Mật khẩu</label>
+            </div>
+
+            <div class="web__form__input">
+                <input type="password" id="re-password" onchange="webFormInputNotEmpty(this)" required>
+                <label for="re-password">Nhập lại mật khẩu</label>
+            </div>
+
+            <div class="web__form__input">
+                <input type="email" name="email" id="email" onchange="webFormInputNotEmpty(this)" required>
+                <label for="email">Email</label>
+            </div>
+
+            <!-- gender radio -->
+            <div class="web__form__radio">
+                <h3 style="text-align: center; padding: 10px 0;">Chọn giới tính của bạn</h3>
+
+                <label>
+                    <input type="radio" name="gender" value="m" checked onchange="">
+                    <div style="background-image: url('https://i.pinimg.com/236x/06/ad/9d/06ad9d293dac0b2ef6f3bef2d8f38c5f.jpg');"></div>
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="f">
+                    <div style="background-image: url('https://i.pinimg.com/474x/99/95/3b/99953bbd0978363f62d4b1acf5a67fe1.jpg');"></div>
+                </label>
+            </div>
+
+            <button type="submit">Đăng kí</button>
+            <span>Đã có tài khoản? <a href="signin">Đăng Nhập</a></span>
+
+        </form>
+    </hanime-body>
+
+    <!-- web header -->
+    <%@include file="components/header.jsp" %>
+</body>
+<script src="js/web-form.js"></script>
 </html>

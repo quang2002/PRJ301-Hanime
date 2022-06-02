@@ -16,6 +16,54 @@
 </head>
 
 <body>
+    <hanime-body>
+        <link rel="stylesheet" href="css/web-form.css">
+        <form class="web__form" method="post" autocomplete="off">
+            <object data="assets/frog.svg" width="200"></object>
+
+            <h1>Đăng Kí</h1>
+
+            <div class="web__form__input">
+                <input type="text" name="username" id="username" onchange="webFormInputNotEmpty(this)">
+                <label for="username">Tên đăng nhập</label>
+            </div>
+
+            <div class="web__form__input">
+                <input type="password" name="password" id="password" onchange="webFormInputNotEmpty(this)">
+                <label for="password">Mật khẩu</label>
+            </div>
+
+            <div class="web__form__input">
+                <input type="password" name="re-password" id="re-password" onchange="webFormInputNotEmpty(this)">
+                <label for="re-password">Nhập lại mật khẩu</label>
+            </div>
+
+            <div class="web__form__input">
+                <input type="text" name="email" id="email" onchange="webFormInputNotEmpty(this)">
+                <label for="email">Email</label>
+            </div>
+
+            <!-- gender radio -->
+            <div class="web__form__radio">
+                <h3 style="text-align: center; padding: 10px 0;">Chọn giới tính của bạn</h3>
+
+                <label>
+                    <input type="radio" name="gender" value="m" checked onchange="">
+                    <div style="background-image: url('https://i.pinimg.com/236x/06/ad/9d/06ad9d293dac0b2ef6f3bef2d8f38c5f.jpg');"></div>
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="f">
+                    <div style="background-image: url('https://i.pinimg.com/474x/99/95/3b/99953bbd0978363f62d4b1acf5a67fe1.jpg');"></div>
+                </label>
+            </div>
+
+            <button type="submit">Đăng kí</button>
+            <span>Đã có tài khoản? <a href="">Đăng Nhập</a></span>
+
+        </form>
+    </hanime-body>
+
     <!-- web content -->
     <header class="web__header">
         <div style="display: flex; align-items: center; height: 44px;">
@@ -34,11 +82,11 @@
                                     .cls-1 {
                                         fill: red;
                                     }
-    
+
                                     .cls-2 {
                                         fill: #fff;
                                     }
-    
+
                                     .cls-3 {
                                         fill: #ff765f;
                                     }
@@ -61,19 +109,19 @@
                         </svg>
                     </div>
                 </nav-bar-logo>
-    
+
                 <a href="">
                     <i class="fa-solid fa-house"></i>
                     <span>Trang chủ</span>
                 </a>
-    
+
                 <a onpointerdown="toggleSelectType()" id="select-type">
                     <i class="fa-solid fa-list"></i>
                     <span>Thể loại</span>
-    
+
                     <i style="float: right;" class="fa-solid"></i>
                 </a>
-    
+
                 <div id="select-type-items">
                     <a href="">Drama</a>
                     <a href="">Comedy</a>
@@ -104,27 +152,27 @@
                     <a href="">Video</a>
                     <a href="">Video Game</a>
                 </div>
-    
+
                 <a href="">
                     <i class="fa-solid fa-fire-flame-curved"></i>
                     <span>Top lượt xem</span>
                 </a>
-    
+
                 <hr>
-    
-                <a href="">
+
+                <a href="/signin">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span>Đăng nhập</span>
                 </a>
-    
-                <a href="">
+
+                <a href="/signup">
                     <i class="fa-solid fa-user-plus"></i>
                     <span>Đăng kí</span>
                 </a>
             </nav-bar-component>
 
             <nav-bar-background onclick="toggleNavBar()" style="display: none;">
-                
+
             </nav-bar-background>
 
             <div class="web__header__logo">
@@ -199,13 +247,9 @@
             </hanime-login-button>
         </div>
     </header>
-    <hr>
-    <div>
-        
-
-    </div>
 
     <script src="js/nav-bar-btn.js"></script>
+    <script src="js/web-form.js"></script>
 </body>
 
 </html>

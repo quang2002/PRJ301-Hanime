@@ -4,7 +4,21 @@
     Author     : yuyu2
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.TokenGenerator"%>
+<% 
+    final String contextPath = request.getContextPath();
+    
+    boolean isLogin = false;
+
+    if (request.getCookies() != null) {
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals("token")) {
+                isLogin = TokenGenerator.validCheck(cookie.getValue());
+                break;
+            }
+        }
+    }
+%>
 <head>
     <link rel="stylesheet" href="css/web-header.css" />
     <link rel="stylesheet" href="css/web-nav-bar.css" />
@@ -56,7 +70,7 @@
                 </div>
             </nav-bar-logo>
 
-            <a href="">
+            <a href="<%= contextPath %>">
                 <i class="fa-solid fa-house"></i>
                 <span>Trang chủ</span>
             </a>
@@ -99,22 +113,35 @@
                 <a href="">Video Game</a>
             </div>
 
-            <a href="">
+            <a href="<%= contextPath %>/trending">
                 <i class="fa-solid fa-fire-flame-curved"></i>
                 <span>Top lượt xem</span>
             </a>
 
             <hr>
 
-                <a href="">
+            <%
+                if (isLogin) {
+            %>
+                <a href="<%= contextPath %>/signout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            <%
+                } else {
+            %>
+                <a href="<%= contextPath %>/signin">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     <span>Đăng nhập</span>
                 </a>
 
-                <a href="">
+                <a href="<%= contextPath %>/signup">
                     <i class="fa-solid fa-user-plus"></i>
                     <span>Đăng kí</span>
                 </a>
+            <%
+                }
+            %>
         </nav-bar-component>
 
         <nav-bar-background onclick="toggleNavBar()" style="display: none;">
@@ -171,18 +198,7 @@
     </div>
 
     <div class="web__header__account">
-        <%
-            boolean isLogin = false;
 
-            if (request.getCookies() != null) {
-                for (Cookie cookie : request.getCookies()) {
-                    if (cookie.getName().equals("token")) {
-                        isLogin = true;
-                        break;
-                    }
-                }
-            }
-        %>
 
         <% if (isLogin) { %>
         <div style="width: 25px; height: 25px; cursor: pointer;">
@@ -202,7 +218,7 @@
         </hanime-account-icon>
         <% } else { %>
         <hanime-login-button>
-            <a href="">
+            <a href="<%= contextPath %>/signin">
                 <span>Login</span>
             </a>
         </hanime-login-button>

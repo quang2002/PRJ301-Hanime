@@ -57,4 +57,9 @@ public class AuthModel extends ModelBase<Auth> {
         }
     }
 
+    public boolean check(String username, String password) throws SQLException {
+        try ( PreparedStatement stmt = createStatement("SELECT * FROM Auth WHERE Username = ? AND Password = ?", username, password);  ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+    }
 }

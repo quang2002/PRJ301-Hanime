@@ -4,9 +4,33 @@
         <servlet-name>SignupServlet</servlet-name>
         <servlet-class>routes.SignupServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>APIQueryServlet</servlet-name>
+        <servlet-class>routes.APIQueryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SigninServlet</servlet-name>
+        <servlet-class>routes.SigninServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignoutServlet</servlet-name>
+        <servlet-class>routes.SignoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignupServlet</servlet-name>
         <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>APIQueryServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SigninServlet</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignoutServlet</servlet-name>
+        <url-pattern>/signout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

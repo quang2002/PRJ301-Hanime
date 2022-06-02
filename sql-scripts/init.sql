@@ -34,6 +34,7 @@ CREATE TABLE [Users] (
 	[DOB]			DATE,
 	[Gender]		BIT NOT NULL,
 	[Phone]			VARCHAR (12),
+	[Avatar]		VARBINARY(MAX),
 
 	PRIMARY KEY		([ID]),
 	FOREIGN KEY		([ID]) REFERENCES [Auth]([ID]),
@@ -64,5 +65,3 @@ BEGIN
 		@gender
 	);
 END;
-
-SELECT * FROM Auth
