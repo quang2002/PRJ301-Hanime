@@ -40,7 +40,10 @@
             </div>
 
             <div class="web__form__input">
-                <input type="email" name="email" id="email" onchange="webFormInputNotEmpty(this)" required>
+                <input type="email" name="email" id="email" 
+                    pattern="[A-Za-z][\d\w]+@[\d\w]{2,5}(.*[\d\w]{2,5}){1,3}" 
+                    onchange="webFormInputNotEmpty(this)" 
+                    required>
                 <label for="email">Email</label>
             </div>
 

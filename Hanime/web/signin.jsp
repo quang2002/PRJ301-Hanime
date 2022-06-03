@@ -30,7 +30,11 @@
             </div>
 
             <div class="web__form__input">
-                <input type="password" name="password" id="password" onchange="webFormInputNotEmpty(this)" pattern="\S{8,}" required>
+                <input type="password" name="password" id="password" pattern="\S{8,}"
+                    onfocus="webFormPlaceHolderFocus(this)" 
+                    onblur="webFormPlaceHolderBlur(this)"  
+                    onchange="webFormInputNotEmpty(this)" 
+                    required>
                 <label for="password">Mật khẩu</label>
             </div>
             
