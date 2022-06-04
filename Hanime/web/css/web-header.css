@@ -4,7 +4,10 @@
     --web-header-search-bar-button-background-color: #313131;
     --web-header-search-bar-login-button-color: rgb(0, 132, 255);
 }
-
+header{
+    position: absolute;
+    z-index: 1;
+}
 .web__header {
     background-color: #202020;
 
@@ -35,11 +38,13 @@
     border-radius: var(--web-header-search-bar-radius);
 }
 
-.web__header__searchbar * {
+.web__header__searchbar *,
+.web__header__searchbar__popup * {
     width: 100%;
 }
 
-.web__header__searchbar>form>input {
+.web__header__searchbar>form>input,
+.web__header__searchbar__popup>form>input {
     font-size: large;
     padding: 10px;
 
@@ -52,7 +57,24 @@
     border: none;
 }
 
-.web__header__searchbar>button {
+.web__header__searchbar__popup>form>input{
+    position:fixed;
+    padding: 20px;
+    margin-left:200px;
+    padding-left:80px;
+}
+.web__header__searchbar__popup>button{
+    position:fixed;
+    margin-left:200px;
+}
+.web__header__searchbar__popup{
+    display:none;
+    width:100%;
+    margin-top:140px;
+}
+
+.web__header__searchbar>button,
+.web__header__searchbar__popup>button {
     cursor: pointer;
 
     padding: 0 15px;
@@ -103,9 +125,15 @@ hanime-login-button > a {
 hanime-login-button > a:active {
     background-color: #505050;
 }
-
+#nav-btn-search-bar {
+    display: none ;
+}
 @media screen and (max-width: 640px) {
-    .web__header__searchbar {
+    .web__header__searchbar{
         display: none !important;
     }
+    #nav-btn-search-bar{
+        display: block !important;
+    }
+    
 }

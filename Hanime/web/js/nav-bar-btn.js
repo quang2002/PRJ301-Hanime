@@ -36,5 +36,16 @@ function toggleSelectType() {
     updateToggleSelectType();
 }
 
+function openSearch(){
+    let element = document.getElementsByClassName("web__header__searchbar__popup")[0];
+    element.style.display="block";
+    document.getElementById("search-bar-popup").focus();
+}
+function closeSearch(){
+    let element = document.getElementsByClassName("web__header__searchbar__popup")[0];
+    element.style.display="none";
+}
+
+
 updateToggleSelectType();
 
