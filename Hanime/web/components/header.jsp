@@ -4,7 +4,7 @@
     Author     : yuyu2
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.TokenGenerator"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.TokenGenerator, routes.SigninServlet"%>
 <% 
     final String contextPath = request.getContextPath();
     
@@ -13,7 +13,7 @@
     if (request.getCookies() != null) {
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().equals("token")) {
-                isLogin = TokenGenerator.validCheck(cookie.getValue());
+                isLogin = TokenGenerator.validCheck(cookie.getValue(), SigninServlet.AUTH_SECRET_KEY);
                 break;
             }
         }

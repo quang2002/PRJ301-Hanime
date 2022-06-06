@@ -9,6 +9,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -33,12 +35,14 @@ public class TokenGenerator {
         return result;
     }
 
-    public static String SHA256(String str) {
+    public static String HMACSHA256(String str, String key) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] encoded = md.digest(str.getBytes());
-            return bytesToHex(encoded);
-        } catch (NoSuchAlgorithmException e) {
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(key.getBytes("UTF-8"), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+
+            return bytesToHex(sha256_HMAC.doFinal(str.getBytes("UTF-8")));
+        } catch (Exception e) {
             return null;
         }
     }
@@ -62,14 +66,17 @@ public class TokenGenerator {
         }
 
         String dataPart = encode64(json);
-        String signaturePart = encode64(SHA256(json));
+        String signaturePart = encode64(HMACSHA256(json, key));
 
         return dataPart + "." + signaturePart;
     }
 
-    public static boolean validCheck(String token) {
+    public static boolean validCheck(String token, String key) {
         String[] data = token.split("\\.");
 
-        return SHA256(decode64(data[0])).equals(decode64(data[1]));
+        return HMACSHA256(
+                decode64(data[0]),
+                key
+        ).equals(decode64(data[1]));
     }
 }

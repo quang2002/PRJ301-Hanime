@@ -22,7 +22,7 @@ import utilities.TokenGenerator;
 public class SigninServlet extends HttpServlet {
 
     private AuthModel auth;
-    private static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
+    public static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
 
     @Override
     public void init() throws ServletException {
@@ -49,7 +49,9 @@ public class SigninServlet extends HttpServlet {
 
                 String token = TokenGenerator.generate(data, AUTH_SECRET_KEY);
 
-                response.addCookie(new Cookie("token", token));
+                Cookie c = new Cookie("token", token);
+                //c.setMaxAge(9999);
+                response.addCookie(c);
                 response.sendRedirect(request.getContextPath());
                 return;
             }

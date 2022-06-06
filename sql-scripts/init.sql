@@ -37,7 +37,7 @@ CREATE TABLE [Users] (
 	[Avatar]		VARBINARY(MAX),
 
 	PRIMARY KEY		([ID]),
-	FOREIGN KEY		([ID]) REFERENCES [Auth]([ID]),
+	FOREIGN KEY		([ID]) REFERENCES [Auth]([ID]) ON DELETE CASCADE,
 	CHECK			([Phone] LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]' OR [Phone] LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 );
 

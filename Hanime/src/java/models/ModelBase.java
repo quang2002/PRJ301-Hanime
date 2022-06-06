@@ -20,7 +20,12 @@ public abstract class ModelBase<T> {
     private static final Connection connection;
 
     static {
-        connection = ModelBase.createConnection("jdbc:sqlserver://YUYU;databaseName=Hanime;encrypt=true;trustServerCertificate=true", "sa", "271102");
+        final String serverName = "localhost";
+        final String databaseName = "Hanime";
+        final String username = "sa";
+        final String password = "271102";
+        
+        connection = ModelBase.createConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
     }
 
     public static Connection createConnection(String query, String username, String password) {
