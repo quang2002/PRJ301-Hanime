@@ -1,10 +1,10 @@
 <%-- 
-    Document   : signin
-    Created on : Jun 2, 2022, 4:11:36 PM
+    Document   : forgot-password
+    Created on : Jun 7, 2022, 1:16:20 AM
     Author     : yuyu2
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.GlobalConstants"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,34 +15,34 @@
         <!-- link css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/web-form.css">
+
+        <!-- reCaptcha -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
         <!-- web content -->
     <hanime-body>
-        <form class="web__form" method="post" autocomplete="off" id="signin-form">
+        <form class="web__form" method="post" autocomplete="off">
             <object data="assets/frog.svg" width="200"></object>
 
-            <h1>Đăng Nhập</h1>
+            <h1>Quên Mật Khẩu</h1>
 
             <div class="web__form__input">
                 <input type="text" name="username" id="username" onchange="webFormInputNotEmpty(this)" required>
                 <label for="username">Tên đăng nhập</label>
             </div>
 
-            <div class="web__form__input">
-                <input type="password" name="password" id="password" pattern="\S{8,}"
-                    onblur="webFormPlaceHolderBlur(this)"  
-                    onchange="webFormInputNotEmpty(this)" 
-                    required>
-                <label for="password">Mật khẩu</label>
-            </div>
-            
-            <button type="submit">Đăng nhập</button>
-            <span>Chưa có tài khoản? <a href="signup">Đăng Kí</a></span>
-            <span><a href="recovery">Quên mật khẩu?</a></span>
+            <div class="g-recaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY %>"></div>
 
+            <button type="submit">Nhận mail khôi phục</button>
         </form>
     </hanime-body>
+
+    <script>
+        window.onload = () => {
+            document.getElementById("g-recaptcha-response").required = true;
+        };
+    </script>
 
     <!-- web header -->
     <%@include file="components/header.jsp" %>

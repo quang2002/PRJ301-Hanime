@@ -42,6 +42,18 @@ CREATE TABLE [Users] (
 );
 
 
+-- UsersFilm
+-- CategoryFilm
+
+-- Auth(ID, Username, Password, Roles)
+-- Users(ID, Email, Address, )
+-- Category(ID, Name, Description)
+-- Film(ID, Name, Description, ThumnailURI, VideoURI, ReleaseDate, Length)
+-- View(ID, FilmID, UserID, Date)
+-- Comment(ID, FilmID, UserID, Content)
+-- Rate(ID, FilmID, UserID, Rate)
+
+
 ----------------------------------------------
 --                PROCEDURE                 --
 ----------------------------------------------

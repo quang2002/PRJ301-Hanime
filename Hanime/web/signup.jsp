@@ -4,7 +4,7 @@
     Author     : yuyu2
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.GlobalConstants"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,12 +15,15 @@
         <!-- link css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/web-form.css">
+
+        <!-- reCaptcha -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body>
         <!-- web content -->
     <hanime-body>
         <form class="web__form" method="post" autocomplete="off" id="signup-form">
-            <object data="assets/frog.svg" width="200"></object>
+            <!--object data="assets/frog.svg" width="200"></object-->
 
             <h1>Đăng Kí</h1>
 
@@ -41,9 +44,9 @@
 
             <div class="web__form__input">
                 <input type="email" name="email" id="email" 
-                    pattern="[A-Za-z][\d\w]+@[\d\w]{2,5}(.*[\d\w]{2,5}){1,3}" 
-                    onchange="webFormInputNotEmpty(this)" 
-                    required>
+                       pattern="[A-Za-z][\d\w]+@[\d\w]{2,5}(.*[\d\w]{2,5}){1,3}" 
+                       onchange="webFormInputNotEmpty(this)" 
+                       required>
                 <label for="email">Email</label>
             </div>
 
@@ -62,14 +65,23 @@
                 </label>
             </div>
 
+            <div class="g-recaptcha" data-sitekey="<%= GlobalConstants.GOOGLE_RECAPTCHA_SITE_KEY %>"></div>
+
             <button type="submit">Đăng kí</button>
             <span>Đã có tài khoản? <a href="signin">Đăng Nhập</a></span>
 
         </form>
     </hanime-body>
 
+    <script>
+        window.onload = () => {
+            document.getElementById("g-recaptcha-response").required = true;
+        };
+    </script>
+
     <!-- web header -->
     <%@include file="components/header.jsp" %>
 </body>
 <script src="js/web-form.js"></script>
+
 </html>

@@ -125,9 +125,11 @@ hanime-login-button > a {
 hanime-login-button > a:active {
     background-color: #505050;
 }
+
 #nav-btn-search-bar {
     display: none ;
 }
+
 @media screen and (max-width: 640px) {
     .web__header__searchbar{
         display: none !important;

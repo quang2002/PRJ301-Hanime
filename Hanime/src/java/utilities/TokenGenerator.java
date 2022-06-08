@@ -4,13 +4,12 @@
  */
 package utilities;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
-import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -18,7 +17,7 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class TokenGenerator {
 
-    public static String bytesToHex(byte[] bytes) {
+    private static String bytesToHex(byte[] bytes) {
         String result = "";
         for (byte b : bytes) {
             String hex = Integer.toHexString(b);
@@ -27,7 +26,7 @@ public class TokenGenerator {
         return result;
     }
 
-    public static byte[] hexToBytes(String hex) {
+    private static byte[] hexToBytes(String hex) {
         byte[] result = new byte[hex.length() / 2];
         for (int i = 0; i < hex.length() - 1; i += 2) {
             result[i / 2] = Byte.parseByte(hex.substring(i, i + 1), 16);
@@ -35,7 +34,7 @@ public class TokenGenerator {
         return result;
     }
 
-    public static String HMACSHA256(String str, String key) {
+    private static String HMACSHA256(String str, String key) {
         try {
             Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
             SecretKeySpec secret_key = new SecretKeySpec(key.getBytes("UTF-8"), "HmacSHA256");
@@ -47,23 +46,16 @@ public class TokenGenerator {
         }
     }
 
-    public static String encode64(String data) {
+    private static String encode64(String data) {
         return new String(Base64.getEncoder().encode(data.getBytes()));
     }
 
-    public static String decode64(String data) {
+    private static String decode64(String data) {
         return new String(Base64.getDecoder().decode(data.getBytes()));
     }
 
     public static String generate(HashMap<String, Object> data, String key) {
-        String json = "";
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            json += ",\"" + entry.getKey() + "\":\"" + entry.getValue().toString() + "\"";
-        }
-
-        if (!json.isEmpty()) {
-            json = "{" + json.substring(1) + "}";
-        }
+        String json = new JSONObject(data).toString();
 
         String dataPart = encode64(json);
         String signaturePart = encode64(HMACSHA256(json, key));
@@ -78,5 +70,14 @@ public class TokenGenerator {
                 decode64(data[0]),
                 key
         ).equals(decode64(data[1]));
+    }
+
+    public static JSONObject decrypt(String token) {
+        try {
+            String[] data = token.split("\\.");
+            return new JSONObject(decode64(data[0]));
+        } catch (JSONException e) {
+            return null;
+        }
     }
 }
