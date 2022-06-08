@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import models.AuthModel;
+import utilities.GlobalConstants;
 import utilities.TokenGenerator;
 
 /**
@@ -22,11 +23,9 @@ import utilities.TokenGenerator;
 public class SigninServlet extends HttpServlet {
 
     private AuthModel auth;
-    public static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
 
     @Override
     public void init() throws ServletException {
-        super.init();
         auth = new AuthModel();
     }
 
@@ -45,12 +44,12 @@ public class SigninServlet extends HttpServlet {
                 HashMap<String, Object> data = new HashMap<>();
 
                 data.put("user", username);
-                data.put("expired", new Date().getTime());
+                data.put("expired", new Date().getTime() + 1000 * 60 * 60 * 24); // a day
 
-                String token = TokenGenerator.generate(data, AUTH_SECRET_KEY);
+                String token = TokenGenerator.generate(data, GlobalConstants.AUTH_SECRET_KEY);
 
                 Cookie c = new Cookie("token", token);
-                //c.setMaxAge(9999);
+                c.setMaxAge(60 * 60 * 24);
                 response.addCookie(c);
                 response.sendRedirect(request.getContextPath());
                 return;

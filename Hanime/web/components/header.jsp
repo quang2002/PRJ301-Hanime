@@ -4,7 +4,23 @@
     Author     : yuyu2
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.TokenGenerator, routes.SigninServlet"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="utilities.TokenGenerator, utilities.GlobalConstants, org.json.JSONObject, org.json.JSONException, java.util.Date"%>
+<%! 
+    private boolean isValidToken(String token) {
+        try {
+            if (!TokenGenerator.validCheck(token, GlobalConstants.AUTH_SECRET_KEY)) {
+                return false;
+            }
+
+            JSONObject json = TokenGenerator.decrypt(token);
+
+            return new Date().before(new Date(json.getLong("expired")));
+        } catch (JSONException e) {
+            return false;
+        }
+    }
+%>
+
 <% 
     final String contextPath = request.getContextPath();
     
@@ -13,7 +29,7 @@
     if (request.getCookies() != null) {
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().equals("token")) {
-                isLogin = TokenGenerator.validCheck(cookie.getValue(), SigninServlet.AUTH_SECRET_KEY);
+                isLogin = isValidToken(cookie.getValue());
                 break;
             }
         }
