@@ -22,12 +22,14 @@
         <form class="web__form" method="post" autocomplete="off">
             <!--object data="assets/frog.svg" width="200"></object-->
 
-            <h1>Đổi mật khẩu</h1>
+            <h1>Khôi phục mật khẩu</h1>
 
             <div class="web__form__input">
                 <input type="password" name="password" id="password" onchange="webFormInputNotEmpty(this)" pattern="\S{8,}" required>
                 <label for="password">Mật khẩu mới</label>
             </div>
+
+            <input name="token" value="<%= request.getParameter("token") %>" hidden/>
 
             <button type="submit">Đổi mật khẩu</button>
 

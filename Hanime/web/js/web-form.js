@@ -6,17 +6,17 @@ function webFormInputNotEmpty(i) {
     }
 }
 
-function webFormPlaceHolderFocus(element){
-    element.setAttribute("placeholder","placeholder goes here");
+function webFormPlaceHolderFocus(element) {
+    element.setAttribute("placeholder", "placeholder goes here");
 }
-function webFormPlaceHolderBlur(element){
+function webFormPlaceHolderBlur(element) {
     element.removeAttribute("placeholder");
 }
 
 const signupForm = document.getElementById("signup-form");
 
 if (signupForm) {
-    var isExist = 'true';
+    let isExist = 'true';
 
     const pwd = signupForm.querySelector("#password");
     const repwd = signupForm.querySelector("#re-password");

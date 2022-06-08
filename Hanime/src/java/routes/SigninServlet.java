@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
-import models.AuthModel;
+import models.Procedures;
 import utilities.GlobalConstants;
 import utilities.TokenGenerator;
 
@@ -21,13 +21,6 @@ import utilities.TokenGenerator;
  * @author yuyu2
  */
 public class SigninServlet extends HttpServlet {
-
-    private AuthModel auth;
-
-    @Override
-    public void init() throws ServletException {
-        auth = new AuthModel();
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,12 +32,12 @@ public class SigninServlet extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-
-            if (auth.check(username, password)) {
+            Long uid = Procedures.checkAuth(username, password);
+            if (uid != null) {
                 HashMap<String, Object> data = new HashMap<>();
 
-                data.put("user", username);
-                data.put("expired", new Date().getTime() + 1000 * 60 * 60 * 24); // a day
+                data.put("uid", uid);
+                data.put("expiry", new Date().getTime() + 1000 * 60 * 60 * 24); // a day
 
                 String token = TokenGenerator.generate(data, GlobalConstants.AUTH_SECRET_KEY);
 

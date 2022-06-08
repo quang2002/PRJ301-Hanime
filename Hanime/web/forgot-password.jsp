@@ -22,7 +22,7 @@
     <body>
         <!-- web content -->
     <hanime-body>
-        <form class="web__form" method="post" autocomplete="off">
+        <form class="web__form" method="post" autocomplete="off" id="forgot-password-form">
             <object data="assets/frog.svg" width="200"></object>
 
             <h1>Quên Mật Khẩu</h1>

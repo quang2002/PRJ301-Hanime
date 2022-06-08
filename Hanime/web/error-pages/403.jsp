@@ -49,7 +49,7 @@
     }
 
 </style>
-
+<title>Error 403</title>
 <svg xmlns="http://www.w3.org/2000/svg" id="robot-error" viewBox="0 0 260 118.9">
     <defs>
         <clipPath id="white-clip"><circle id="white-eye" fill="#cacaca" cx="130" cy="65" r="20" /> </clipPath>

@@ -10,9 +10,8 @@ import java.sql.Date;
  *
  * @author quang2002
  */
-public class User {
+public class User extends EntityBase {
 
-    private long id;
     private String email;
     private String address;
     private Date dob;
@@ -29,14 +28,6 @@ public class User {
         this.dob = dob;
         this.gender = gender;
         this.phone = phone;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getEmail() {

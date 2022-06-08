@@ -23,7 +23,7 @@
         color="#111">
 
 
-    <title>CodePen - Error 404 with pure CSS: Monument Valley inspiration</title>
+    <title>Error 404</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 

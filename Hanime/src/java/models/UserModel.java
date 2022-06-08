@@ -94,4 +94,21 @@ public class UserModel extends ModelBase<User> {
         }
         return null;
     }
+
+    @Override
+    public User get(Long id) throws SQLException {
+        try ( PreparedStatement stmt = createStatement("SELECT * FROM [Users] WHERE [ID] = ?", id);  ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                String email = rs.getNString("Email");
+                String address = rs.getNString("Address");
+                Date dob = rs.getDate("DOB");
+                boolean gender = rs.getBoolean("Gender");
+                String phone = rs.getString("Phone");
+
+                return new User(id, email, address, dob, gender, phone);
+            }
+
+            return null;
+        }
+    }
 }

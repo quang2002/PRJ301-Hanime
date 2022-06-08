@@ -19,14 +19,14 @@ public class AuthModel extends ModelBase<Auth> {
 
     @Override
     public int add(Auth obj) throws SQLException {
-        try ( PreparedStatement stmt = createStatement("INSERT INTO [Auth]([Username], [Password]) VALUES (?, ?)", obj.getUsername(), obj.getPassword())) {
+        try ( PreparedStatement stmt = createStatement("INSERT INTO [Auth]([Username], [Password], [IsAdmin]) VALUES (?, ?, ?)", obj.getUsername(), obj.getPassword(), obj.isAdmin())) {
             return stmt.executeUpdate();
         }
     }
 
     @Override
     public int update(Auth obj) throws SQLException {
-        try ( PreparedStatement stmt = createStatement("UPDATE [Auth] SET [Username] = ?, [Password] = ? WHERE [ID] = ?", obj.getUsername(), obj.getPassword(), obj.getId())) {
+        try ( PreparedStatement stmt = createStatement("UPDATE [Auth] SET [Username] = ?, [Password] = ?, [isAdmin] = ? WHERE [ID] = ?", obj.getUsername(), obj.getPassword(), obj.isAdmin(), obj.getId())) {
             return stmt.executeUpdate();
         }
     }
@@ -49,17 +49,26 @@ public class AuthModel extends ModelBase<Auth> {
                 Long id = rs.getLong("ID");
                 String username = rs.getString("Username");
                 String password = rs.getString("Password");
+                Boolean isAdmin = rs.getBoolean("IsAdmin");
 
-                result.add(new Auth(id, username, password));
+                result.add(new Auth(id, username, password, isAdmin));
             }
 
             return result;
         }
     }
 
-    public boolean check(String username, String password) throws SQLException {
-        try ( PreparedStatement stmt = createStatement("SELECT * FROM Auth WHERE Username = ? AND Password = ? COLLATE Latin1_General_CS_AS", username, password);  ResultSet rs = stmt.executeQuery()) {
-            return rs.next();
+    @Override
+    public Auth get(Long id) throws SQLException {
+        try ( PreparedStatement stmt = createStatement("SELECT * FROM [Auth] WHERE [ID] = ?", id);  ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                String username = rs.getString("Username");
+                String password = rs.getString("Password");
+                Boolean isAdmin = rs.getBoolean("IsAdmin");
+
+                return new Auth(id, username, password, isAdmin);
+            }
+            return null;
         }
     }
 }

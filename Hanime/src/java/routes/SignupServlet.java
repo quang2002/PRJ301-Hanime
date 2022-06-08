@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import models.Procedures;
 import utilities.GlobalConstants;
 import utilities.GoogleReCaptcha;
 
@@ -40,12 +41,7 @@ public class SignupServlet extends HttpServlet {
                 throw null;
             }
 
-            try ( PreparedStatement stmt = models.ModelBase.createStatement(
-                    "EXEC [sp_create_account] ?, ?, ?, ?",
-                    username, password, email, gender.equals("m")
-            )) {
-                stmt.execute();
-            }
+            Procedures.createAccount(username, password, email, gender.equals("m"), false);
         } catch (Exception e) {
             doGet(request, response);
             return;

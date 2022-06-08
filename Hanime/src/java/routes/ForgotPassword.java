@@ -1,4 +1,4 @@
- /*ffffffffffff
+/*ffffffffffff
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import models.UserModel;
-import org.json.JSONException;
-import org.json.JSONObject;
 import utilities.GlobalConstants;
 import utilities.GoogleReCaptcha;
 import utilities.SMTP;
@@ -28,20 +26,6 @@ public class ForgotPassword extends HttpServlet {
     private UserModel user;
     private SMTP smtp;
 
-    private static boolean isValidToken(String token) {
-        try {
-            if (!TokenGenerator.validCheck(token, GlobalConstants.RECOVERY_SECRET_KEY)) {
-                return false;
-            }
-
-            JSONObject json = TokenGenerator.decrypt(token);
-
-            return new Date().before(new Date(json.getLong("expired")));
-        } catch (JSONException e) {
-            return false;
-        }
-    }
-
     @Override
     public void init() throws ServletException {
         user = new UserModel();
@@ -55,8 +39,8 @@ public class ForgotPassword extends HttpServlet {
 
         if (token == null) {
             request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
-        } else if (isValidToken(token)) {
-            request.getRequestDispatcher("change-password.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("reset?token=" + token);
         }
     }
 
@@ -76,8 +60,8 @@ public class ForgotPassword extends HttpServlet {
 
             if (u != null && u.getEmail() != null) {
                 HashMap<String, Object> data = new HashMap<>();
-                data.put("username", username);
-                data.put("expired", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
+                data.put("uid", u.getId());
+                data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
 
                 String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): http://localhost:9999/Hanime/recovery?token=" + TokenGenerator.generate(data, GlobalConstants.RECOVERY_SECRET_KEY);
 

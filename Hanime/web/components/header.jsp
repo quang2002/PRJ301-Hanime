@@ -14,7 +14,7 @@
 
             JSONObject json = TokenGenerator.decrypt(token);
 
-            return new Date().before(new Date(json.getLong("expired")));
+            return new Date().before(new Date(json.getLong("expiry")));
         } catch (JSONException e) {
             return false;
         }
@@ -212,7 +212,7 @@
         <form action="Hanime/search" method="get" id="search-bar" autocomplete="off">
             <input type="text" name="q" placeholder="Search">
         </form>
-        <button onclick="document.getElementById('search-bar').submit();" style="width: 60px; height: 41px;">
+        <button onclick="document.getElementById('search-bar').submit();" style="width: 60px; height: 43px;">
             <svg viewBox="0 0 24 24" focusable="false"
                  style="pointer-events: none; display: block; width: 100%; height: 100%;">
                 <path style="fill: white;"

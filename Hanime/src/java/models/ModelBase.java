@@ -4,6 +4,7 @@
  */
 package models;
 
+import entities.EntityBase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.Set;
  * @author quang2002
  * @param <T>
  */
-public abstract class ModelBase<T> {
+public abstract class ModelBase<T extends EntityBase> {
 
     private static final Connection connection;
 
@@ -24,7 +25,7 @@ public abstract class ModelBase<T> {
         final String databaseName = "Hanime";
         final String username = "sa";
         final String password = "271102";
-        
+
         connection = ModelBase.createConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
     }
 
@@ -51,6 +52,8 @@ public abstract class ModelBase<T> {
 
         return ps;
     }
+
+    public abstract T get(Long id) throws SQLException;
 
     public abstract int add(T obj) throws SQLException;
 

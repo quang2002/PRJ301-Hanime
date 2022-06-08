@@ -55,26 +55,34 @@ public class TokenGenerator {
     }
 
     public static String generate(HashMap<String, Object> data, String key) {
-        String json = new JSONObject(data).toString();
+        try {
+            String json = new JSONObject(data).toString();
 
-        String dataPart = encode64(json);
-        String signaturePart = encode64(HMACSHA256(json, key));
+            String dataPart = encode64(json);
+            String signaturePart = encode64(HMACSHA256(json, key));
 
-        return dataPart + "." + signaturePart;
+            return encode64(dataPart + "." + signaturePart);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static boolean validCheck(String token, String key) {
-        String[] data = token.split("\\.");
+        try {
+            String[] data = decode64(token).split("\\.");
 
-        return HMACSHA256(
-                decode64(data[0]),
-                key
-        ).equals(decode64(data[1]));
+            return HMACSHA256(
+                    decode64(data[0]),
+                    key
+            ).equals(decode64(data[1]));
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static JSONObject decrypt(String token) {
         try {
-            String[] data = token.split("\\.");
+            String[] data = decode64(token).split("\\.");
             return new JSONObject(decode64(data[0]));
         } catch (JSONException e) {
             return null;

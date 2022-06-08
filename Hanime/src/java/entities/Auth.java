@@ -8,27 +8,20 @@ package entities;
  *
  * @author quang2002
  */
-public class Auth {
+public class Auth extends EntityBase {
 
-    private long id;
     private String username;
     private String password;
+    private Boolean isAdmin;
 
     public Auth() {
     }
 
-    public Auth(long id, String username, String password) {
+    public Auth(long id, String username, String password, Boolean isAdmin) {
         this.id = id;
         this.username = username;
         this.password = password;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+        this.isAdmin = isAdmin;
     }
 
     public String getUsername() {
@@ -47,8 +40,16 @@ public class Auth {
         this.password = password;
     }
 
+    public Boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setRoleAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
     @Override
     public String toString() {
-        return "Auth{" + "id=" + id + ", username=" + username + ", password=" + password + '}';
+        return "Auth{" + "id=" + id + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin + '}';
     }
 }
