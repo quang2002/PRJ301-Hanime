@@ -29,7 +29,7 @@ public class ForgotPassword extends HttpServlet {
     @Override
     public void init() throws ServletException {
         user = new UserModel();
-        smtp = new SMTP("smtp-mail.outlook.com", "587", "yuyu2711@outlook.com", "Qu@ng2002");
+        smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
         smtp.connect();
     }
 

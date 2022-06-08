@@ -10,4 +10,8 @@ public class GlobalConstants {
     public static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
     public static final String RECOVERY_SECRET_KEY = "T00_L4t3";
     
+    
+    // SMTP Account
+    public static final String SMTP_ACCOUNT_EMAIL = "prj301-hanime@outlook.com";
+    public static final String SMTP_ACCOUNT_PASSWORD = "/>B89,S5AUZnZh4V";
 }
