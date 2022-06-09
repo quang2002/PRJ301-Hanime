@@ -1,0 +1,9 @@
+footer{
+    position: relative;
+}
+footer a{
+    text-decoration: none;
+}
+footer object{
+    pointer-events: auto;
+}

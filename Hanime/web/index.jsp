@@ -20,9 +20,10 @@
         <%@include file="components/header.jsp" %>
 
         <!-- web content -->
-        <div>
-            home
-        </div>
-
+        
+        <%@include file="components/content.jsp" %>
+        
+        <!-- web footer -->
+        <%@include file="components/footer.jsp" %>
     </body>
 </html>
