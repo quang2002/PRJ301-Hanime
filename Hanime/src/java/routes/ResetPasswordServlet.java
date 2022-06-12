@@ -11,26 +11,29 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import entities.Auth;
+import jakarta.servlet.annotation.WebServlet;
 import models.AuthModel;
 import org.json.JSONObject;
-import utilities.GlobalConstants;
 import utilities.TokenGenerator;
 
 /**
  *
  * @author yuyu2
  */
-public class ResetPassword extends HttpServlet {
+@WebServlet(urlPatterns = {"/reset"})
+public class ResetPasswordServlet extends HttpServlet {
 
     private static boolean isValidToken(String token) {
         try {
-            if (!TokenGenerator.validCheck(token, GlobalConstants.RECOVERY_SECRET_KEY)) {
+            JSONObject json = TokenGenerator.decrypt(token);
+
+            Long uid = json.getLong("uid");
+
+            if (new Date().after(new Date(json.getLong("expiry")))) {
                 return false;
             }
 
-            JSONObject json = TokenGenerator.decrypt(token);
-
-            return new Date().before(new Date(json.getLong("expiry")));
+            return TokenGenerator.validCheck(token, new AuthModel().get(uid).getPassword());
         } catch (Exception e) {
             return false;
         }
@@ -40,10 +43,10 @@ public class ResetPassword extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String token = request.getParameter("token");
         if (!isValidToken(token)) {
-            request.getRequestDispatcher("error-pages/404.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("reset-password.jsp").forward(request, response);
+            response.sendError(403);
+            return;
         }
+        request.getRequestDispatcher("reset-password.jsp").forward(request, response);
     }
 
     @Override
@@ -51,21 +54,23 @@ public class ResetPassword extends HttpServlet {
         try {
             String password = request.getParameter("password");
             String token = request.getParameter("token");
-            if (isValidToken(token)) {
-                Long uid = TokenGenerator.decrypt(token).getLong("uid");
-                AuthModel authModel = new AuthModel();
 
-                Auth auth = authModel.get(uid);
-                auth.setPassword(password);
-
-                authModel.update(auth);
-                response.sendRedirect(request.getContextPath());
-            } else {
-                request.getRequestDispatcher("error-pages/404.jsp").forward(request, response);
+            if (!isValidToken(token)) {
+                response.sendError(403);
+                return;
             }
+
+            Long uid = TokenGenerator.decrypt(token).getLong("uid");
+            AuthModel authModel = new AuthModel();
+
+            Auth auth = authModel.get(uid);
+            auth.setPassword(password);
+
+            authModel.update(auth);
+            response.sendRedirect(".");
         } catch (Exception e) {
             System.err.println(e);
-            throw null;
+            response.sendError(500);
         }
     }
 

@@ -28,32 +28,90 @@ CREATE TABLE [Auth] (
 	UNIQUE			([Username]),
 );
 
-CREATE TABLE [Users] (
+CREATE TABLE [User] (
 	[ID]			BIGINT,
-	[Email]			NVARCHAR (320) NOT NULL,
+	[AvatarURL]		VARCHAR  (MAX),
+	[Fullname]		NVARCHAR (MAX),
+	[Email]			NVARCHAR (MAX) NOT NULL,
 	[Address]		NVARCHAR (MAX),
 	[DOB]			DATE,
 	[Gender]		BIT NOT NULL,
 	[Phone]			VARCHAR (12),
-	[Avatar]		VARBINARY(MAX),
+
+	[NotifyVideoUpload]			BIT DEFAULT 1,
+	[NotifyFriendRequest]		BIT DEFAULT 1,
+	[NotifyNews]				BIT DEFAULT 0,
+	[NotifyUpdates]				BIT DEFAULT 0,
 
 	PRIMARY KEY		([ID]),
 	FOREIGN KEY		([ID]) REFERENCES [Auth]([ID]) ON DELETE CASCADE,
-	CHECK			([Phone] LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]' OR [Phone] LIKE '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 );
 
+CREATE TABLE [Category] (
+	[ID]			BIGINT IDENTITY (1, 1),
+	[Name]			NVARCHAR (64),
+	[Description]	NVARCHAR (MAX),
 
--- UsersFilm
--- CategoryFilm
+	PRIMARY KEY		([ID]),
+	UNIQUE			([Name]),
+);
 
--- Auth(ID, Username, Password, Roles)
--- Users(ID, Email, Address, )
--- Category(ID, Name, Description)
--- Film(ID, Name, Description, ThumnailURI, VideoURI, ReleaseDate, Length)
--- View(ID, FilmID, UserID, Date)
--- Comment(ID, FilmID, UserID, Content)
--- Rate(ID, FilmID, UserID, Rate)
+CREATE TABLE [Film] (
+	[ID]			BIGINT IDENTITY (1, 1),
+	[Name]			NVARCHAR (MAX),
+	[Description]	NVARCHAR (MAX),
+	[ThumbnailURL]	VARCHAR  (MAX),
+	[VideoURL]		VARCHAR  (MAX),
+	[ReleaseDate]	DATE,
+	[Length]		INT,
+	[View]			BIGINT,
 
+	PRIMARY KEY		([ID]),
+	CHECK			([Length] >= 0),
+	CHECK			([View] >= 0),
+);
+
+CREATE TABLE [FilmCategory] (
+	[FilmID]		BIGINT,
+	[CategoryID]	BIGINT,
+
+	PRIMARY	KEY		([FilmID], [CategoryID]),
+	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
+	FOREIGN KEY		([CategoryID]) REFERENCES [Category]([ID]) ON DELETE CASCADE,
+);
+
+CREATE TABLE [Follow] (
+	[FilmID]		BIGINT,
+	[UserID]		BIGINT,
+
+	PRIMARY KEY		([FilmID], [UserID]),
+	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
+	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE CASCADE,
+);
+
+CREATE TABLE [Comment] (
+	[ID]			BIGINT IDENTITY (1, 1),
+	[FilmID]		BIGINT NOT NULL,
+	[UserID]		BIGINT,
+	[Content]		NVARCHAR (MAX) NOT NULL,
+
+	PRIMARY KEY		([ID]),
+	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
+	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE SET NULL,
+);
+
+CREATE TABLE [Rate] (
+	[ID]			BIGINT IDENTITY (1, 1),
+	[FilmID]		BIGINT NOT NULL,
+	[UserID]		BIGINT,
+	[Rate]			INT DEFAULT 0,
+
+	PRIMARY KEY		([ID]),
+	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
+	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE SET NULL,
+
+	CHECK ([Rate] BETWEEN 0 AND 5),
+);
 
 ----------------------------------------------
 --                PROCEDURE                 --
@@ -72,10 +130,11 @@ BEGIN
 	INSERT INTO [Auth]([Username], [Password], [IsAdmin]) VALUES (@username, @password, @isadmin);
 
 	-- Create User
-	INSERT INTO [Users]([ID], [Email], [Gender]) 
+	INSERT INTO [User]([ID], [Email], [Gender], [AvatarURL]) 
 	VALUES (
 		(SELECT [ID] FROM [Auth] WHERE [Username] = @username),
 		@email,
-		@gender
+		@gender,
+		'http://res.cloudinary.com/quang2002/image/upload/run6usa9xlfdzvwgywaw'
 	);
 END;

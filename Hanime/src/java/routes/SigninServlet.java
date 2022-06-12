@@ -5,21 +5,19 @@
 package routes;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
 import models.Procedures;
-import utilities.GlobalConstants;
-import utilities.TokenGenerator;
+import utilities.Authentication;
 
 /**
  *
  * @author yuyu2
  */
+@WebServlet(urlPatterns = {"/signin"})
 public class SigninServlet extends HttpServlet {
 
     @Override
@@ -34,20 +32,12 @@ public class SigninServlet extends HttpServlet {
             String password = request.getParameter("password");
             Long uid = Procedures.checkAuth(username, password);
             if (uid != null) {
-                HashMap<String, Object> data = new HashMap<>();
-
-                data.put("uid", uid);
-                data.put("expiry", new Date().getTime() + 1000 * 60 * 60 * 24); // a day
-
-                String token = TokenGenerator.generate(data, GlobalConstants.AUTH_SECRET_KEY);
-
-                Cookie c = new Cookie("token", token);
-                c.setMaxAge(60 * 60 * 24);
-                response.addCookie(c);
-                response.sendRedirect(request.getContextPath());
+                response.addCookie(Authentication.createTokenCookie(uid, 60 * 60 * 24));
+                response.sendRedirect(".");
                 return;
             }
         } catch (Exception e) {
+            System.err.println(e);
         }
         doGet(request, response);
     }

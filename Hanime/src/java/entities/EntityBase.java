@@ -12,6 +12,13 @@ public abstract class EntityBase {
 
     protected Long id;
 
+    public EntityBase() {
+    }
+
+    public EntityBase(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

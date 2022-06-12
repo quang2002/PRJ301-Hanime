@@ -18,7 +18,7 @@ public class Auth extends EntityBase {
     }
 
     public Auth(long id, String username, String password, Boolean isAdmin) {
-        this.id = id;
+        super(id);
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -46,10 +46,5 @@ public class Auth extends EntityBase {
 
     public void setRoleAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
-    }
-
-    @Override
-    public String toString() {
-        return "Auth{" + "id=" + id + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin + '}';
     }
 }

@@ -1,0 +1,76 @@
+:root {
+    --hanime-search-bar-input-background-color: #121212;
+    --hanime-search-bar-button-background-color: #313131;
+
+    --hanime-search-bar-border-radius: 3px;
+}
+
+.hanime-header {
+    background-color: var(--hanime-background-color);
+    padding: 5px 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 99;
+}
+
+.hanime-header * {
+    color: white;
+}
+
+.hanime-header__nav-bar-btn {
+    padding: 10px;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.hanime-header__search-bar {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.hanime-header__search-bar--input {
+    display: block;
+    height: 100%;
+    width: 400px;
+    border-radius: var(--hanime-search-bar-border-radius) 0 0 var(--hanime-search-bar-border-radius);
+    background-color: var(--hanime-search-bar-input-background-color);
+    padding: 0 15px;
+    border: 1px solid var(--hanime-search-bar-button-background-color);
+}
+
+.hanime-header__search-bar--button {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 0 var(--hanime-search-bar-border-radius) var(--hanime-search-bar-border-radius) 0;
+    cursor: pointer;
+    background-color: var(--hanime-search-bar-button-background-color);
+}
+
+.hanime-header__notification {
+    margin: 0 20px;
+    position: relative;
+}
+
+.hanime-header__notification--dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50% !important;
+    position: absolute;
+    top: 1px;
+    right: -2px;
+    background-color: red;
+    border: 1px solid var(--hanime-background-color);
+}
+
+@media only screen and (max-width: 768px) {
+    .hanime-header__search-bar {
+        display: none;
+    }
+}

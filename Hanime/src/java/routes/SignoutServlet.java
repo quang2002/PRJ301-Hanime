@@ -6,6 +6,7 @@
 package routes;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import java.io.IOException;
  *
  * @author yuyu2
  */
+@WebServlet(urlPatterns = {"/signout"})
 public class SignoutServlet extends HttpServlet {
    
     @Override
@@ -23,6 +25,6 @@ public class SignoutServlet extends HttpServlet {
         Cookie cookie = new Cookie("token", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-        response.sendRedirect(request.getContextPath());
+        response.sendRedirect(".");
     }
 }
