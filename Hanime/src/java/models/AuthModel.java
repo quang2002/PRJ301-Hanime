@@ -8,8 +8,8 @@ import entities.Auth;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -39,11 +39,9 @@ public class AuthModel extends ModelBase<Auth> {
     }
 
     @Override
-    public Set<Auth> getall() throws SQLException {
-        try ( PreparedStatement stmt = createStatement("SELECT * FROM [Auth]")) {
-            Set<Auth> result = new HashSet<>();
-
-            ResultSet rs = stmt.executeQuery();
+    public Map<Long, Auth> getall() throws SQLException {
+        try ( PreparedStatement stmt = createStatement("SELECT * FROM [Auth]");  ResultSet rs = stmt.executeQuery()) {
+            Map<Long, Auth> result = new HashMap<>();
 
             while (rs.next()) {
                 Long id = rs.getLong("ID");
@@ -51,7 +49,7 @@ public class AuthModel extends ModelBase<Auth> {
                 String password = rs.getString("Password");
                 Boolean isAdmin = rs.getBoolean("IsAdmin");
 
-                result.add(new Auth(id, username, password, isAdmin));
+                result.put(id, new Auth(id, username, password, isAdmin));
             }
 
             return result;

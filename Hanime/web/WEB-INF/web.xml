@@ -1,53 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
-        <servlet-name>SignupServlet</servlet-name>
-        <servlet-class>routes.SignupServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>APIQueryServlet</servlet-name>
-        <servlet-class>routes.APIQueryServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SigninServlet</servlet-name>
-        <servlet-class>routes.SigninServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SignoutServlet</servlet-name>
-        <servlet-class>routes.SignoutServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ForgotPassword</servlet-name>
-        <servlet-class>routes.ForgotPassword</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ResetPassword</servlet-name>
-        <servlet-class>routes.ResetPassword</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SignupServlet</servlet-name>
-        <url-pattern>/signup</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>APIQueryServlet</servlet-name>
-        <url-pattern>/api/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SigninServlet</servlet-name>
-        <url-pattern>/signin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SignoutServlet</servlet-name>
-        <url-pattern>/signout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ForgotPassword</servlet-name>
-        <url-pattern>/recovery</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ResetPassword</servlet-name>
-        <url-pattern>/reset</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

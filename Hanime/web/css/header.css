@@ -35,6 +35,7 @@
 .hanime-header__search-bar--input {
     display: block;
     height: 100%;
+    width: 400px;
     border-radius: var(--hanime-search-bar-border-radius) 0 0 var(--hanime-search-bar-border-radius);
     background-color: var(--hanime-search-bar-input-background-color);
     padding: 0 15px;

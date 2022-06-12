@@ -5,6 +5,7 @@
 package routes;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
  *
  * @author yuyu2
  */
+@WebServlet(urlPatterns = {"/api/*"})
 public class APIQueryServlet extends HttpServlet {
 
     public interface APIProcessCallback {
@@ -62,12 +64,12 @@ public class APIQueryServlet extends HttpServlet {
                 Pattern pattern = Pattern.compile("^\\" + request.getContextPath() + "\\/api/([^\\/]+)(\\?.*)?$");
 
                 Matcher matcher = pattern.matcher(uri);
-                
+
                 if (!matcher.matches()) {
                     out.print("Invalid request");
                     return;
                 }
-                
+
                 routes.get(matcher.group(1)).process(request, out);
             } catch (Exception e) {
                 out.print(e.getMessage());

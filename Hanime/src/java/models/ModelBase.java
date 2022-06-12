@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Set;
+import java.util.Map;
 
 /**
  *
@@ -61,5 +61,5 @@ public abstract class ModelBase<T extends EntityBase> {
 
     public abstract int remove(T obj) throws SQLException;
 
-    public abstract Set<T> getall() throws SQLException;
+    public abstract Map<Long, T> getall() throws SQLException;
 }

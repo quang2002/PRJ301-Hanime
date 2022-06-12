@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
+@import url(header.css);
+@import url(nav-bar.css);
+@import url(card.css);
+@import url(responsive-form.css);
+
+:root {
+    --hanime-background-color: #202020;
+    --hanime-body-background-color: #181818;
+    --hanime-hr-color: #373737;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,24 +22,44 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
-html,
-body {
-    background-color: #181818;
+p {
+    margin: 0;
+}
+
+html, body {
     height: 100%;
 }
 
-hr {
-    border-color: rgb(139, 139, 139);
+object {
+    display: block !important;
 }
 
-hanime-body {
-    display: block;
+input {
+    outline: none;
+    border: none;
+}
 
-    height: fit-content;
-    background: url('https://sportshub.cbsistatic.com/i/2022/05/16/3eee5cbd-0e19-48fd-a094-500cfe42c931/spy-x-family-anya-heh-anime.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+::-webkit-scrollbar {
+    width: 0;
+}
 
-    padding-top: 62px;
+.hanime-body {
+    background-color: var(--hanime-body-background-color);
+    padding: 10px;
+    overflow: auto;
+    height: calc(100vh - 55px);
+}
+
+.hanime-hr {
+    margin: 0;
+    opacity: 1;
+    border-color: var(--hanime-hr-color);
+}
+
+.g-recaptcha-response {
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    border: none !important;
 }

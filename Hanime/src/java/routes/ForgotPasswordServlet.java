@@ -5,12 +5,15 @@
 package routes;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import entities.User;
+import models.AuthModel;
 import models.UserModel;
 import utilities.GlobalConstants;
 import utilities.GoogleReCaptcha;
@@ -21,7 +24,8 @@ import utilities.TokenGenerator;
  *
  * @author yuyu2
  */
-public class ForgotPassword extends HttpServlet {
+@WebServlet(urlPatterns = {"/forgot-password"})
+public class ForgotPasswordServlet extends HttpServlet {
 
     private UserModel user;
     private SMTP smtp;
@@ -35,13 +39,7 @@ public class ForgotPassword extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String token = request.getParameter("token");
-
-        if (token == null) {
-            request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("reset?token=" + token);
-        }
+        request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
     }
 
     @Override
@@ -56,23 +54,25 @@ public class ForgotPassword extends HttpServlet {
                 throw null;
             }
 
-            entities.User u = user.getByUsername(username);
+            User u = user.getByUsername(username);
 
-            if (u != null && u.getEmail() != null) {
-                HashMap<String, Object> data = new HashMap<>();
-                data.put("uid", u.getId());
-                data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
-
-                String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): http://localhost:9999/Hanime/recovery?token=" + TokenGenerator.generate(data, GlobalConstants.RECOVERY_SECRET_KEY);
-
-                smtp.sendMimeMessage("Hanime (No-Reply)", u.getEmail(), "[Hanime] Password Recovery", text);
-            } else {
+            if (u == null) {
                 throw null;
             }
+
+            String oldPassword = new AuthModel().get(u.getId()).getPassword();
+
+            HashMap<String, Object> data = new HashMap<>();
+            data.put("uid", u.getId());
+            data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
+
+            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \n" + GlobalConstants.DOMAIN + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+
+            smtp.sendMimeMessage("Hanime (No-Reply)", u.getEmail(), "[Hanime] Password Recovery", text);
         } catch (Exception e) {
             doGet(request, response);
             return;
         }
-        response.sendRedirect(request.getContextPath());
+        response.sendRedirect(".");
     }
 }

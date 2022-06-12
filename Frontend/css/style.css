@@ -3,6 +3,7 @@
 @import url(header.css);
 @import url(nav-bar.css);
 @import url(card.css);
+@import url(responsive-form.css);
 
 :root {
     --hanime-background-color: #202020;
@@ -45,10 +46,20 @@ input {
 .hanime-body {
     background-color: var(--hanime-body-background-color);
     padding: 10px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
 }
 
 .hanime-hr {
     margin: 0;
     opacity: 1;
     border-color: var(--hanime-hr-color);
+}
+
+.g-recaptcha-response {
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    border: none !important;
 }
