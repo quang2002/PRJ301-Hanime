@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import models.AuthModel;
 import models.UserModel;
 import utilities.Authentication;
+import utilities.Crypto;
 
 /**
  *
@@ -32,16 +33,16 @@ public class SettingServlet extends RequireAuthServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String avatar = request.getParameter("avatar");
-            String fullname = request.getParameter("fullname");
+            String avatar = request.getParameter("avatar").trim();
+            String fullname = request.getParameter("fullname").trim();
             Boolean gender = request.getParameter("gender").equals("male");
-            String dob = request.getParameter("birthdate");
-            String phone = request.getParameter("phone");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
+            String dob = request.getParameter("birthdate").trim();
+            String phone = request.getParameter("phone").trim();
+            String email = request.getParameter("email").trim();
+            String address = request.getParameter("address").trim();
 
-            String oldPassword = request.getParameter("old-password");
-            String newPassword = request.getParameter("new-password");
+            String oldPassword = request.getParameter("old-password").trim();
+            String newPassword = request.getParameter("new-password").trim();
 
             String notifyVideoUpload = request.getParameter("notify-video-upload");
             String notifyFriendRequest = request.getParameter("notify-friend-request");
@@ -59,9 +60,11 @@ public class SettingServlet extends RequireAuthServlet {
             user.setFullname(fullname);
             user.setGender(gender);
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Long timestamp = sdf.parse(dob).getTime();
-            user.setDob(new Date(timestamp));
+            if (!dob.isEmpty()) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Long timestamp = sdf.parse(dob).getTime();
+                user.setDob(new Date(timestamp));
+            }
 
             user.setEmail(email);
             user.setAddress(address);
@@ -75,6 +78,9 @@ public class SettingServlet extends RequireAuthServlet {
             new UserModel().update(user);
 
             if (!oldPassword.isEmpty() && !newPassword.isEmpty()) {
+                oldPassword = Crypto.SHA256(oldPassword);
+                newPassword = Crypto.SHA256(newPassword);
+                
                 Auth auth = new AuthModel().get(user.getId());
 
                 if (auth.getPassword().equals(oldPassword)) {

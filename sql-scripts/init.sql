@@ -21,7 +21,7 @@ USE [Hanime];
 CREATE TABLE [Auth] (
 	[ID]			BIGINT IDENTITY (1, 1),
 	[Username]		VARCHAR (32) NOT NULL,
-	[Password]		VARCHAR (32) NOT NULL,
+	[Password]		VARCHAR (64) NOT NULL,
 	[IsAdmin]		BIT NOT NULL,			
 
 	PRIMARY KEY		([ID]),
@@ -120,7 +120,7 @@ CREATE TABLE [Rate] (
 GO
 CREATE PROC [sp_create_account]
 	@username		VARCHAR (32),
-	@password		VARCHAR (32),
+	@password		VARCHAR (64),
 	@email			NVARCHAR (320),
 	@gender			BIT,
 	@isadmin		BIT

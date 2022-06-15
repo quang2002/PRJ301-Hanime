@@ -44,10 +44,10 @@
                             <img class="hanime-body__card-item--thumbnail"
                                  src="${film.getThumbnailUrl()}">
                             <div class="hanime-body__card-item--body">
-                                <p class="hanime-body__card-item--body--title">${film.getName()}</p>
-                                <p class="hanime-body__card-item--body--sub">${film.getView()} views</p>
+                                <p class="hanime-body__card-item--body--title"><c:out value="${film.getName()}"></c:out></p>
+                                <p class="hanime-body__card-item--body--sub"><c:out value="${film.getView()}"></c:out> views</p>
+                                </div>
                             </div>
-                        </div>
                     </c:forEach>
                 </div>
             </div>
