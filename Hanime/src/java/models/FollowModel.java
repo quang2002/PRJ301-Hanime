@@ -4,15 +4,15 @@
  */
 package models;
 
-import entities.Category;
+import entities.Follow;
 
 /**
  *
  * @author yuyu2
  */
-public class CategoryModel extends ModelBase<Category> {
+public class FollowModel extends ModelBase<Follow> {
 
-    public CategoryModel() throws Exception {
-        super(Category.class);
+    public FollowModel() throws Exception {
+        super(Follow.class);
     }
 }

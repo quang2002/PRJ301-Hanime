@@ -4,15 +4,25 @@
  */
 package entities;
 
+import com.yuyu.annotations.SQLColumn;
+import com.yuyu.annotations.SQLTable;
+import utilities.Crypto;
+
 /**
  *
  * @author quang2002
  */
+@SQLTable(table = "Auth")
 public class Auth extends EntityBase {
 
-    private String username;
-    private String password;
-    private Boolean isAdmin;
+    @SQLColumn(column = "Username")
+    public String username;
+    
+    @SQLColumn(column = "Password")
+    public String password;
+    
+    @SQLColumn(column = "IsAdmin")
+    public Boolean isAdmin;
 
     public Auth() {
     }
@@ -37,7 +47,7 @@ public class Auth extends EntityBase {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Crypto.SHA256(password);
     }
 
     public Boolean isAdmin() {

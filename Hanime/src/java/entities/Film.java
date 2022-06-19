@@ -4,34 +4,33 @@
  */
 package entities;
 
-import java.sql.Date;
+import com.yuyu.annotations.SQLColumn;
+import com.yuyu.annotations.SQLTable;
 
 /**
  *
  * @author yuyu2
  */
+@SQLTable(table = "Film")
 public class Film extends EntityBase {
 
-    private String name;
-    private String description;
-    private String thumbnailUrl;
-    private String videoUrl;
-    private Date releaseDate;
-    private Integer length;
-    private Long view;
+    @SQLColumn(column = "Name")
+    public String name;
+
+    @SQLColumn(column = "Description")
+    public String description;
+
+    @SQLColumn(column = "ThumbnailURL")
+    public String thumbnailUrl;
 
     public Film() {
     }
 
-    public Film(Long id, String name, String description, String thumbnailUrl, String videoUrl, Date releaseDate, Integer length, Long view) {
+    public Film(Long id, String name, String description, String thumbnailUrl) {
         super(id);
         this.name = name;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
-        this.videoUrl = videoUrl;
-        this.releaseDate = releaseDate;
-        this.length = length;
-        this.view = view;
     }
 
     public String getName() {
@@ -56,37 +55,5 @@ public class Film extends EntityBase {
 
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Long getView() {
-        return view;
-    }
-
-    public void setView(Long view) {
-        this.view = view;
     }
 }

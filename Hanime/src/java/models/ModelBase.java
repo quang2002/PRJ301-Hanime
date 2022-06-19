@@ -4,21 +4,17 @@
  */
 package models;
 
-import entities.EntityBase;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Map;
+import com.yuyu.jdbc.SQLConnection;
+import com.yuyu.jdbc.SQLServerModel;
 
 /**
  *
  * @author quang2002
  * @param <T>
  */
-public abstract class ModelBase<T extends EntityBase> {
+public abstract class ModelBase<T> extends SQLServerModel<T> {
 
-    private static final Connection connection;
+    private static SQLConnection connection = null;
 
     static {
         final String serverName = "localhost";
@@ -26,40 +22,20 @@ public abstract class ModelBase<T extends EntityBase> {
         final String username = "sa";
         final String password = "271102";
 
-        connection = ModelBase.createConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
-    }
-
-    public static Connection createConnection(String query, String username, String password) {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            return DriverManager.getConnection(query, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            return null;
+
+            connection = new SQLConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
+        } catch (Exception e) {
+            System.err.println(e);
         }
     }
 
-    public static Connection getConnection() {
+    public ModelBase(Class<T> entityClass) throws Exception {
+        super(connection, entityClass);
+    }
+
+    public static SQLConnection connection() {
         return connection;
     }
-
-    public static PreparedStatement createStatement(String sql, Object... params) throws SQLException {
-        PreparedStatement ps = getConnection().prepareStatement(sql);
-
-        for (int i = 0; i < params.length; i++) {
-            Object param = params[i];
-            ps.setObject(i + 1, param);
-        }
-
-        return ps;
-    }
-
-    public abstract T get(Long id) throws SQLException;
-
-    public abstract int add(T obj) throws SQLException;
-
-    public abstract int update(T obj) throws SQLException;
-
-    public abstract int remove(T obj) throws SQLException;
-
-    public abstract Map<Long, T> getall() throws SQLException;
 }

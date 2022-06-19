@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import models.UserModel;
 
 /**
  *
@@ -39,10 +40,11 @@ public class APIQueryServlet extends HttpServlet {
     }
 
     public static void isUserExist(HttpServletRequest request, PrintWriter response) throws SQLException {
-        String username = request.getParameter("username");
-
-        try ( PreparedStatement stmt = models.ModelBase.createStatement("SELECT * FROM [Auth] WHERE [Username] = ?", username);  ResultSet rs = stmt.executeQuery()) {
-            response.print(rs.next());
+        try {
+            String username = request.getParameter("username");
+            response.print(new UserModel().getByUsername(username) != null);
+        } catch (Exception e) {
+            response.print(e);
         }
     }
 

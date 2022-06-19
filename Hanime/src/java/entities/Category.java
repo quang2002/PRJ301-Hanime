@@ -4,13 +4,21 @@
  */
 package entities;
 
+import com.yuyu.annotations.SQLColumn;
+import com.yuyu.annotations.SQLTable;
+
 /**
  *
  * @author yuyu2
  */
+@SQLTable(table = "Category")
 public class Category extends EntityBase {
-    private String name;
-    private String description;
+    
+    @SQLColumn(column = "Name")
+    public String name;
+    
+    @SQLColumn(column = "Description")
+    public String description;
 
     public Category() {
     }

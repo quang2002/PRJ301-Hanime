@@ -21,7 +21,7 @@ USE [Hanime];
 CREATE TABLE [Auth] (
 	[ID]			BIGINT IDENTITY (1, 1),
 	[Username]		VARCHAR (32) NOT NULL,
-	[Password]		VARCHAR (32) NOT NULL,
+	[Password]		VARCHAR (64) NOT NULL,
 	[IsAdmin]		BIT NOT NULL,			
 
 	PRIMARY KEY		([ID]),
@@ -61,12 +61,23 @@ CREATE TABLE [Film] (
 	[Name]			NVARCHAR (MAX),
 	[Description]	NVARCHAR (MAX),
 	[ThumbnailURL]	VARCHAR  (MAX),
+
+	PRIMARY KEY		([ID]),
+);
+
+CREATE TABLE [Video] (
+	[ID]			BIGINT IDENTITY (1, 1),
+	[Name]			NVARCHAR (MAX),
+	[ThumbnailURL]	VARCHAR  (MAX),
 	[VideoURL]		VARCHAR  (MAX),
 	[ReleaseDate]	DATE,
 	[Length]		INT,
 	[View]			BIGINT,
 
+	[FilmID]		BIGINT,
+
 	PRIMARY KEY		([ID]),
+	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
 	CHECK			([Length] >= 0),
 	CHECK			([View] >= 0),
 );
@@ -91,23 +102,24 @@ CREATE TABLE [Follow] (
 
 CREATE TABLE [Comment] (
 	[ID]			BIGINT IDENTITY (1, 1),
-	[FilmID]		BIGINT NOT NULL,
+	[VideoID]		BIGINT NOT NULL,
 	[UserID]		BIGINT,
 	[Content]		NVARCHAR (MAX) NOT NULL,
 
-	PRIMARY KEY		([ID]),
-	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
+	PRIMARY KEY		CLUSTERED ([ID] DESC),
+	FOREIGN KEY		([VideoID]) REFERENCES [Video]([ID]) ON DELETE CASCADE,
 	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE SET NULL,
 );
 
+
 CREATE TABLE [Rate] (
 	[ID]			BIGINT IDENTITY (1, 1),
-	[FilmID]		BIGINT NOT NULL,
+	[VideoID]		BIGINT NOT NULL,
 	[UserID]		BIGINT,
 	[Rate]			INT DEFAULT 0,
 
 	PRIMARY KEY		([ID]),
-	FOREIGN KEY		([FilmID]) REFERENCES [Film]([ID]) ON DELETE CASCADE,
+	FOREIGN KEY		([VideoID]) REFERENCES [Video]([ID]) ON DELETE CASCADE,
 	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE SET NULL,
 
 	CHECK ([Rate] BETWEEN 0 AND 5),
@@ -120,7 +132,7 @@ CREATE TABLE [Rate] (
 GO
 CREATE PROC [sp_create_account]
 	@username		VARCHAR (32),
-	@password		VARCHAR (32),
+	@password		VARCHAR (64),
 	@email			NVARCHAR (320),
 	@gender			BIT,
 	@isadmin		BIT

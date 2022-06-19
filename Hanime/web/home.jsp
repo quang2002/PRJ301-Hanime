@@ -39,15 +39,15 @@
 
             <div class="hanime-body__cards container-fluid">
                 <div class="row">
-                    <c:forEach var="film" items="${films}">
-                        <div class="hanime-body__card-item col-xl-2 col-md-3 col-sm-6 col-xs-12">
+                    <c:forEach var="video" items="${videos}">
+                        <div class="hanime-body__card-item col-xl-2 col-md-3 col-sm-6 col-xs-12" onmousedown="location.href = 'watch?id=${video.getId()}'">
                             <img class="hanime-body__card-item--thumbnail"
-                                 src="${film.getThumbnailUrl()}">
+                                 src="${video.getThumbnailUrl()}">
                             <div class="hanime-body__card-item--body">
-                                <p class="hanime-body__card-item--body--title">${film.getName()}</p>
-                                <p class="hanime-body__card-item--body--sub">${film.getView()} views</p>
+                                <p class="hanime-body__card-item--body--title"><c:out value="${video.getName()}"></c:out></p>
+                                <p class="hanime-body__card-item--body--sub"><c:out value="${video.getView()}"></c:out> views</p>
+                                </div>
                             </div>
-                        </div>
                     </c:forEach>
                 </div>
             </div>

@@ -4,15 +4,15 @@
  */
 package models;
 
-import entities.Category;
+import entities.FilmCategory;
 
 /**
  *
  * @author yuyu2
  */
-public class CategoryModel extends ModelBase<Category> {
+public class FilmCategoryModel extends ModelBase<FilmCategory> {
 
-    public CategoryModel() throws Exception {
-        super(Category.class);
+    public FilmCategoryModel() throws Exception {
+        super(FilmCategory.class);
     }
 }
