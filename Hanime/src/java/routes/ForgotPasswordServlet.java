@@ -32,9 +32,13 @@ public class ForgotPasswordServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        user = new UserModel();
-        smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
-        smtp.connect();
+        try {
+            user = new UserModel();
+            smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
+            smtp.connect();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }
 
     @Override
@@ -66,7 +70,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             data.put("uid", u.getId());
             data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
 
-            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \n" + GlobalConstants.DOMAIN + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \nhttp://" + GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
 
             smtp.sendMimeMessage("Hanime (No-Reply)", u.getEmail(), "[Hanime] Password Recovery", text);
         } catch (Exception e) {

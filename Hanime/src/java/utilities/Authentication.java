@@ -17,8 +17,8 @@ import org.json.JSONObject;
  */
 public class Authentication {
 
-    public static String getTokenFromCookies(Cookie[] cookies) {
-        for (Cookie cookie : cookies) {
+    public static String getTokenFromCookies(Object cookies) {
+        for (Cookie cookie : (Cookie[])cookies) {
             if (cookie.getName().equals("token")) {
                 return cookie.getValue();
             }

@@ -26,7 +26,8 @@ public class RequireAuthServlet extends HttpServlet {
                 throw null;
             }
         } catch (Exception e) {
-            response.sendError(403);
+            //response.sendError(403);
+            response.sendRedirect("signin");
             return;
         }
         super.service(request, response);

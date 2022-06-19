@@ -4,15 +4,15 @@
  */
 package models;
 
-import entities.Category;
+import entities.Rate;
 
 /**
  *
  * @author yuyu2
  */
-public class CategoryModel extends ModelBase<Category> {
+public class RateModel extends ModelBase<Rate> {
 
-    public CategoryModel() throws Exception {
-        super(Category.class);
+    public RateModel() throws Exception {
+        super(Rate.class);
     }
 }

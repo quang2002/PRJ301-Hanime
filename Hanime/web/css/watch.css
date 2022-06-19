@@ -1,0 +1,7 @@
+.hanime-recommended-videos__video {
+    border-radius: 4px;
+}
+
+.hanime-recommended-videos__video:hover {
+    background-color: #ffffff21;
+}

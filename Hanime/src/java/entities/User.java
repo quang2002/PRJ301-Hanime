@@ -4,28 +4,59 @@
  */
 package entities;
 
+import com.yuyu.annotations.SQLColumn;
+import com.yuyu.annotations.SQLTable;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.json.JSONObject;
 
 /**
  *
+ *
  * @author quang2002
  */
+@SQLTable(table = "User")
 public class User extends EntityBase {
 
-    private String avatarUrl;
-    private String fullname;
-    private String email;
-    private String address;
-    private Date dob;
-    private Boolean gender;
-    private String phone;
+    @SQLColumn(column = "AvatarURL")
+    public String avatarUrl;
 
-    private boolean notifyVideoUpload;
-    private boolean notifyFriendRequest;
-    private boolean notifyNews;
-    private boolean notifyUpdates;
+    @SQLColumn(column = "Fullname")
+    public String fullname;
+
+    @SQLColumn(column = "Email")
+    public String email;
+
+    @SQLColumn(column = "Address")
+    public String address;
+
+    @SQLColumn(column = "DOB")
+    public Date dob;
+
+    @SQLColumn(column = "Gender")
+    public Boolean gender;
+
+    @SQLColumn(column = "Phone")
+    public String phone;
+
+    @SQLColumn(column = "NotifyVideoUpload")
+    public boolean notifyVideoUpload;
+
+    @SQLColumn(column = "NotifyFriendRequest")
+    public boolean notifyFriendRequest;
+
+    @SQLColumn(column = "NotifyNews")
+    public boolean notifyNews;
+
+    @SQLColumn(column = "NotifyUpdates")
+    public boolean notifyUpdates;
 
     public User() {
+    }
+
+    public User(ResultSet rs) throws SQLException {
+        this(rs.getLong("UserID"), rs.getString("AvatarURL"), rs.getNString("Fullname"), rs.getNString("Email"), rs.getNString("Address"), rs.getDate("DOB"), rs.getBoolean("Gender"), rs.getString("Phone"), rs.getBoolean("NotifyVideoUpload"), rs.getBoolean("NotifyFriendRequest"), rs.getBoolean("NotifyNews"), rs.getBoolean("NotifyUpdates"));
     }
 
     public User(Long id, String avatarUrl, String fullname, String email, String address, Date dob, Boolean gender, String phone, boolean notifyVideoUpload, boolean notifyFriendRequest, boolean notifyNews, boolean notifyUpdates) {
@@ -129,5 +160,29 @@ public class User extends EntityBase {
 
     public void setNotifyUpdates(boolean notifyUpdates) {
         this.notifyUpdates = notifyUpdates;
+    }
+    
+    public JSONObject toJSON() {
+        try {
+            JSONObject object = new JSONObject();
+
+            object.put("id", id);
+            object.put("avatar_url", avatarUrl);
+            object.put("fullname", fullname);
+            object.put("email", email);
+            object.put("address", address);
+            object.put("dob", dob);
+            object.put("gender", gender);
+            object.put("phone", phone);
+            
+            object.put("notify_video_upload", notifyVideoUpload);
+            object.put("notify_friend_request", notifyFriendRequest);
+            object.put("notify_news", notifyNews);
+            object.put("notify_updates", notifyUpdates);
+
+            return object;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

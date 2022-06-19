@@ -4,7 +4,10 @@
     Author     : yuyu2
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="models.CategoryModel"%>
 <%@page import="entities.User"%>
+<%@page import="models.CategoryModel"%>
 <%@page import="utilities.Authentication"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
@@ -14,10 +17,14 @@
     try {
         user = Authentication.getUserInformationByToken(token);
     } catch (Exception e) {
-        System.err.println(e);
+        System.err.print(e);
     }
 
     request.setAttribute("user", user);
+%>
+
+<%
+    request.setAttribute("categories", new CategoryModel().getall());
 %>
 
 <div class="hanime-nav-bar__overlay"></div>
@@ -80,27 +87,11 @@
         </a>
 
         <div class="hanime-nav-bar__category">
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
-            <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+            <c:forEach var="category" items="${categories}">
+                <a href="category?id=<c:out value="${category.getId()}"></c:out>" class="hanime-nav-bar__category--link">
+                    <c:out value="${category.getName()}"></c:out>
+                </a>
+            </c:forEach>
         </div>
 
         <% if (user != null) { %>

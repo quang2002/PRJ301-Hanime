@@ -4,13 +4,17 @@
  */
 package entities;
 
+import com.yuyu.annotations.SQLColumn;
+import java.io.Serializable;
+
 /**
  *
  * @author yuyu2
  */
-public abstract class EntityBase {
+public abstract class EntityBase implements Serializable {
 
-    protected Long id;
+    @SQLColumn(column = "ID", isAutoIncrement = true, isPrimaryKey = true)
+    public Long id;
 
     public EntityBase() {
     }

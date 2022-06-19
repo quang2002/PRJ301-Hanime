@@ -10,8 +10,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import models.FilmModel;
+import java.util.List;
+import models.VideoModel;
+import entities.Video;
 
 /**
  *
@@ -23,9 +24,11 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            request.setAttribute("films", new FilmModel().getall().values());
-        } catch (SQLException ex) {
-            System.err.println(ex);
+            List<Video> videos = new VideoModel().getall();
+            
+            request.setAttribute("videos", videos);
+        } catch (Exception e) {
+            System.err.println(e);
         }
 
         request.getRequestDispatcher("home.jsp").forward(request, response);
