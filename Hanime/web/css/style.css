@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+@import url(header.css);
+@import url(nav-bar.css);
+@import url(card.css);
+@import url(responsive-form.css);
+
+:root {
+    --hanime-background-color: #202020;
+    --hanime-body-background-color: #181818;
+    --hanime-hr-color: #373737;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    user-select: none;
+
+    font-family: 'JetBrains Mono', monospace;
+}
+
+p {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+object {
+    display: block !important;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.hanime-body {
+    background-color: var(--hanime-body-background-color);
+    padding: 10px;
+    overflow: auto;
+    height: calc(100vh - 55px);
+}
+
+.hanime-hr {
+    margin: 0;
+    opacity: 1;
+    border-color: var(--hanime-hr-color);
+}
+
+.g-recaptcha-response {
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    border: none !important;
+}

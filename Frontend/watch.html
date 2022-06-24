@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanime</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="hanime-nav-bar__overlay"></div>
+
+    <header class="hanime-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="hanime-header__nav-bar-btn">
+                <i class="fa-solid fa-bars fa-2xl hanime-header__nav-bar-btn--icon"></i>
+            </div>
+
+            <div class="hanime-header__logo">
+                <object data="assets/logo.svg" width="120px"></object>
+            </div>
+        </div>
+
+        <div class="hanime-header__search-bar">
+            <input type="text" name="q" value="" class="hanime-header__search-bar--input" placeholder="Search" />
+            <div class="hanime-header__search-bar--button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <div class="hanime-header__notification">
+                <i class="fa-solid fa-bell"></i>
+                <div class="hanime-header__notification--dot"></div>
+            </div>
+
+            <div class="hanime-header__account">
+                <img src="https://images.squarespace-cdn.com/content/v1/6116ab63480a786f087fad20/1650599374868-S35ZV3OT0AU8KYTH3LBR/superman.png"
+                    alt="avatar" width="30" height="30" class="rounded-circle">
+            </div>
+        </div>
+    </header>
+
+    <nav class="hanime-nav-bar" data-button-class="hanime-header__nav-bar-btn">
+        <div class="hanime-nav-bar__nav-btn-and-logo d-flex align-items-center">
+            <div class="hanime-header__nav-bar-btn">
+                <i class="fa-solid fa-bars fa-2xl hanime-header__nav-bar-btn--icon"></i>
+            </div>
+
+            <div class="hanime-header__logo">
+                <object data="assets/logo.svg" width="120px"></object>
+            </div>
+        </div>
+
+        <div class="hanime-nav-bar__choices">
+            <a href="index.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+
+            <a class="hanime-nav-bar__link position-relative" onmousedown="toggleCategory()">
+                <i class="fa-solid fa-list"></i>
+                <span>Thể loại</span>
+
+                <i class="fa-solid fa-caret-down" style="position: absolute; right: 0;"></i>
+            </a>
+
+            <div class="hanime-nav-bar__category">
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+            </div>
+
+            <a href="setting.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-cog"></i>
+                <span>Cài đặt</span>
+            </a>
+
+            <hr>
+
+            <a href="signin.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Đăng nhập</span>
+            </a>
+
+            <a href="signup.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Đăng ký</span>
+            </a>
+        </div>
+    </nav>
+    <hr class="hanime-hr">
+    <section class="hanime-body">
+        <div class="container text-white">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://player.vimeo.com/video/721557048?h=c592517755&title=0&byline=0&portrait=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    <div class="pt-4 pb-4">
+                        <strong>Mong cho em luôn vui và cười như lúc này... Những bản nhạc lofi chill buồn tâm trạng
+                            nhất
+                            hiện nay!!</strong>
+                        <p class="text-white-50">242,976 views</p>
+                    </div>
+
+                    <hr class="m-0">
+
+                    <div class="p-2">
+                        <h5>Comments</h5>
+
+                        <script>
+                            
+                        </script>
+
+                        <div class="d-flex flex-row align-items-center mb-4">
+                            <img src="https://images.squarespace-cdn.com/content/v1/6116ab63480a786f087fad20/1650599374868-S35ZV3OT0AU8KYTH3LBR/superman.png"
+                                alt="avatar" width="30" height="30" class="rounded-circle m-1">
+                            <div class="form-outline flex-fill m-1 form-white">
+                                <input type="text" class="form-control" id="comment" data-mdb-showcounter="true"
+                                    maxlength="100" />
+                                <label class="form-label">Your comment here</label>
+                                <div class="form-helper text-white"></div>
+                            </div>
+
+                            <button class="btn btn-primary m-1" onclick="sendComment()">Comment</button>
+                        </div>
+                        <div class="border border-dark" id="hanime-comments">
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 border border-dark p-0 d-flex flex-column">
+                    <div class="overflow-y-scroll flex-fill" data-mdb-perfect-scrollbar='true'
+                        style="height: 0; min-height: 400px;">
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded"
+                                    style="object-fit: cover; object-position: center; width: 100%; height: 70px;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+
+                        <div class="text-white m-2 row g-0">
+                            <div class="col-2 col-sm-3 col-md-4 p-1">
+                                <img src="assets/signup-image.jpg" class="rounded" width="100%" height="70px"
+                                    style="object-fit: cover; object-position: center;" />
+                            </div>
+                            <div class="col-10 col-sm-9 col-md-8 p-1">
+                                <p class="card-title text-truncate h-100">Card titleCard titleCard titleCard
+                                    titleCard titleCard titleCard titleCard titleCard titleCard titleCard titleCard
+                                    titleCard title</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom JS -->
+    <script src="js/nav-bar.js"></script>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
+</body>
+
+</html>

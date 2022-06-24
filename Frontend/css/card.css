@@ -1,0 +1,29 @@
+:root {
+    --hanime-card-item-hover-background-color: #00000080;
+    --hanime-card-item-sub-font-size: 12px;
+    --hanime-card-item-sub-color: gray;
+}
+
+.hanime-body__card-item {
+    background-color: var(--hanime-body-background-color);
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hanime-body__card-item:hover {
+    background-color: var(--hanime-card-item-hover-background-color);
+}
+
+.hanime-body__card-item--body {
+    padding-top: 5px;
+}
+
+.hanime-body__card-item--body--sub {
+    font-size: var(--hanime-card-item-sub-font-size);
+    color: var(--hanime-card-item-sub-color);
+}

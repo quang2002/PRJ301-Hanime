@@ -1,0 +1,89 @@
+:root {
+    --hanime-nav-bar-link-hover-background-color: #313131;
+    --hanime-nav-bar-overlay-background-color: #000000A0;
+}
+
+.hanime-nav-bar {
+    background-color: var(--hanime-background-color);
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    margin-left: -100%;
+
+    width: 40%;
+    min-width: 250px;
+    max-width: 350px;
+    z-index: 99;
+}
+
+.hanime-nav-bar.active {
+    margin-left: 0 !important;
+}
+
+.hanime-nav-bar * {
+    color: white;
+}
+
+.hanime-nav-bar__nav-btn-and-logo {
+    padding: 5px 10px;
+}
+
+.hanime-nav-bar__link {
+    text-decoration: none;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+}
+
+.hanime-nav-bar__category--link {
+    text-decoration: none;
+    padding: 8px;
+    padding-left: 50px;
+}
+
+.hanime-nav-bar__link>i {
+    width: 30px;
+    margin: 0 20px;
+}
+
+.hanime-nav-bar__link>span {
+    font-size: 14px;
+}
+
+.hanime-nav-bar__link:hover,
+.hanime-nav-bar__category--link:hover {
+    background-color: var(--hanime-nav-bar-link-hover-background-color);
+}
+
+.hanime-nav-bar__overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--hanime-nav-bar-overlay-background-color);
+    display: none;
+    z-index: 99;
+}
+
+.hanime-nav-bar__choices {
+    overflow: auto;
+    height: calc(100vh - 54px);
+}
+
+.hanime-nav-bar__category {
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+.hanime-nav-bar__category.active {
+    display: flex;
+}
+
+.hanime-nav-bar__category--link {
+    font-size: 14px;
+}
