@@ -9,7 +9,12 @@ Project PRJ301 team 2
 ## Chủ đề
 Web xem phim hanime dành cho wjbu FPT
 
-## Technologies
-- Java Servlet
+## Tech
+- Java Servlet, JSTL
 - Bootstrap
 - jQuery
+- Material Design Bootstrap
+- SMTP
+- reCaptcha V2
+- JWT (Remake base on JWT concept)
+- Websocket
