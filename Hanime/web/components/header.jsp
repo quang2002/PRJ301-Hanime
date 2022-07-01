@@ -40,12 +40,12 @@
         </div>
     </div>
 
-    <div class="hanime-header__search-bar">
+    <form class="hanime-header__search-bar" action="search">
         <input type="text" name="q" value="" class="hanime-header__search-bar--input" placeholder="Search" />
-        <div class="hanime-header__search-bar--button">
+        <button type="submit" class="hanime-header__search-bar--button">
             <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-    </div>
+        </button>
+    </form>
 
     <div class="d-flex align-items-center">
         <% if (user != null) {%>
@@ -90,7 +90,7 @@
             <c:forEach var="category" items="${categories}">
                 <a href="category?id=<c:out value="${category.getId()}"></c:out>" class="hanime-nav-bar__category--link">
                     <c:out value="${category.getName()}"></c:out>
-                </a>
+                    </a>
             </c:forEach>
         </div>
 

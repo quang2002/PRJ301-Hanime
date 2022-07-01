@@ -30,15 +30,23 @@ public class UserModel extends ModelBase<User> {
                 Date dob = rs.getDate("DOB");
                 Boolean gender = rs.getBoolean("Gender");
                 String phone = rs.getString("Phone");
+                Integer exp = rs.getInt("Exp");
 
                 Boolean notifyVideoUpload = rs.getBoolean("NotifyVideoUpload");
                 Boolean notifyFriendRequest = rs.getBoolean("NotifyFriendRequest");
                 Boolean notifyNews = rs.getBoolean("NotifyNews");
                 Boolean notifyUpdates = rs.getBoolean("NotifyUpdates");
 
-                return new User(id, avatarUrl, fullname, email, address, dob, gender, phone, notifyVideoUpload, notifyFriendRequest, notifyNews, notifyUpdates);
+                return new User(id, avatarUrl, fullname, email, address, dob, gender, phone, exp, notifyVideoUpload, notifyFriendRequest, notifyNews, notifyUpdates);
             }
         }
         return null;
+    }
+
+    public int increaseUserExp(Long uid, int exp) throws Exception {
+        User user = get(uid);
+        user.setExp(user.getExp() + exp);
+        update(user);
+        return user.getExp();
     }
 }

@@ -11,13 +11,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import models.UserModel;
+import models.VideoModel;
 
 /**
  *
@@ -37,15 +35,25 @@ public class APIQueryServlet extends HttpServlet {
         routes = new HashMap<>();
 
         routes.put("is-user-exist", APIQueryServlet::isUserExist);
+        routes.put("inc-user-exp", APIQueryServlet::incUserExp);
+        routes.put("inc-video-view", APIQueryServlet::incVideoView);
     }
 
-    public static void isUserExist(HttpServletRequest request, PrintWriter response) throws SQLException {
-        try {
-            String username = request.getParameter("username");
-            response.print(new UserModel().getByUsername(username) != null);
-        } catch (Exception e) {
-            response.print(e);
-        }
+    public static void isUserExist(HttpServletRequest request, PrintWriter response) throws Exception {
+        String username = request.getParameter("username");
+        response.print(new UserModel().getByUsername(username) != null);
+    }
+
+    public static void incUserExp(HttpServletRequest request, PrintWriter response) throws Exception {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Integer exp = Integer.parseInt(request.getParameter("exp"));
+
+        response.print(new UserModel().increaseUserExp(id, exp));
+    }
+    
+    public static void incVideoView(HttpServletRequest request, PrintWriter response) throws Exception {
+        Long id = Long.parseLong(request.getParameter("id"));
+        response.print(new VideoModel().increaseVideoView(id));
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class VideoModel extends ModelBase<Video> {
 
-    private FilmModel filmModel;
+    private final FilmModel filmModel;
 
     public VideoModel() throws Exception {
         super(Video.class);
@@ -60,6 +60,14 @@ public class VideoModel extends ModelBase<Video> {
         }
 
         return result;
+    }
+
+    public Long increaseVideoView(Long uid) throws Exception {
+        Video video = get(uid);
+        video.setView(video.getView() + 1);
+        update(video);
+
+        return video.getView();
     }
 
     @Override
