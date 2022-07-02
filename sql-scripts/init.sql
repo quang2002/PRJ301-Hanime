@@ -120,10 +120,19 @@ CREATE TABLE [Rate] (
 	[Rate]			INT DEFAULT 0,
 
 	PRIMARY KEY		([ID]),
+	UNIQUE			([VideoID], [UserID]),
 	FOREIGN KEY		([VideoID]) REFERENCES [Video]([ID]) ON DELETE CASCADE,
 	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE SET NULL,
 
 	CHECK ([Rate] BETWEEN 0 AND 5),
+);
+
+CREATE TABLE [Notification] (
+	[Content]		NVARCHAR(MAX),
+	[UserID]		BIGINT,
+	[Time]			DATETIME,
+
+	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE CASCADE,
 );
 
 ----------------------------------------------

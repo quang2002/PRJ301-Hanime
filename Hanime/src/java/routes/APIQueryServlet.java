@@ -4,6 +4,7 @@
  */
 package routes;
 
+import entities.Rate;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import models.RateModel;
 import models.UserModel;
 import models.VideoModel;
 
@@ -37,6 +39,7 @@ public class APIQueryServlet extends HttpServlet {
         routes.put("is-user-exist", APIQueryServlet::isUserExist);
         routes.put("inc-user-exp", APIQueryServlet::incUserExp);
         routes.put("inc-video-view", APIQueryServlet::incVideoView);
+        routes.put("rate-video", APIQueryServlet::rateVideo);
     }
 
     public static void isUserExist(HttpServletRequest request, PrintWriter response) throws Exception {
@@ -50,10 +53,18 @@ public class APIQueryServlet extends HttpServlet {
 
         response.print(new UserModel().increaseUserExp(id, exp));
     }
-    
+
     public static void incVideoView(HttpServletRequest request, PrintWriter response) throws Exception {
         Long id = Long.parseLong(request.getParameter("id"));
         response.print(new VideoModel().increaseVideoView(id));
+    }
+
+    public static void rateVideo(HttpServletRequest request, PrintWriter response) throws Exception {
+        Long uid = Long.parseLong(request.getParameter("uid"));
+        Long vid = Long.parseLong(request.getParameter("vid"));
+        Integer rate = Integer.parseInt(request.getParameter("rate"));
+
+        response.print(new RateModel().rate(new Rate(null, vid, uid, rate)));
     }
 
     @Override

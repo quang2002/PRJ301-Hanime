@@ -53,8 +53,34 @@
                             <div class="pt-4 pb-4">
                                 <strong><c:out value="${video.getName()}"></c:out></strong>
                             <p class="text-white-50"><span id="video-view"><c:out value="${video.getView()}"></c:out></span> views</p>
-                            </div>
 
+                                <div class="hanime-rating" data-value="<c:out value="${rate.getRate()}" default="0"></c:out>">
+                                    <div class="hanime-rating__star" data-value="1">
+                                        <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                           data-mdb-original-title="Bad" aria-label="Bad"></i>
+                                    </div>
+
+                                    <div class="hanime-rating__star" data-value="2">
+                                        <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                           data-mdb-original-title="Poor" aria-label="Poor"></i>
+                                    </div>
+
+                                    <div class="hanime-rating__star" data-value="3">
+                                        <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                           data-mdb-original-title="OK" aria-label="OK"></i>
+                                    </div>
+
+                                    <div class="hanime-rating__star" data-value="4">
+                                        <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                           data-mdb-original-title="Good" aria-label="Good"></i>
+                                    </div>
+
+                                    <div class="hanime-rating__star" data-value="5">
+                                        <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                           data-mdb-original-title="Excellent" aria-label="Excellent"></i>
+                                    </div>
+                                </div>
+                            </div>
 
                             <p class="text-white-50"><c:out value="${film.getDescription()}"></c:out></p>
 
@@ -125,7 +151,7 @@
                                     }
 
                                     window.addEventListener('load', () => {
-                                        ws = new CommentWebSocket('ws://<%= GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + GlobalConstants.COMMENT_WSPATH%>', ${video.getId()}, '<%= token%>');
+                                        ws = new CommentWebSocket('ws://<%= GlobalConstants.HOST + GlobalConstants.COMMENT_WSPATH%>', ${video.getId()}, '<%= token%>');
                                         ws.onopen = loadMoreComments;
                                         ws.onmessage = (event) => {
                                             const data = JSON.parse(event.data);
@@ -154,21 +180,5 @@
                                     });
     </script>
 
-    <script>
-        const startTimestamp = Date.now();
-
-        const timeCounter = setInterval(() => {
-            const time = Date.now() - startTimestamp;
-
-            if (time >= 1000 * 60 * 1) {
-                clearInterval(timeCounter);
-
-                fetch('api/inc-video-view?id=${video.getId()}').then(res => res.text()).then(view => {
-                    if (/\d+/.test(view))
-                        document.getElementById('video-view').innerHTML = view;
-                });
-                fetch('api/inc-user-exp?id=${video.getId()}&exp=1');
-            }
-        }, 1000);
-    </script>
+    <script src="js/watch.js" video-id="${video.getId()}" user-id="${user.getId()}"></script>
 </html>

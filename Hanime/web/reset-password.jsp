@@ -49,7 +49,7 @@
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="password" id="password" class="form-control" name="password"
-                                                       required />
+                                                       required pattern="\S{8,}"/>
                                                 <label class="form-label" for="password">Password</label>
                                             </div>
                                         </div>

@@ -70,7 +70,7 @@ public class ForgotPasswordServlet extends HttpServlet {
             data.put("uid", u.getId());
             data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
 
-            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \nhttp://" + GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \nhttp://" + GlobalConstants.HOST + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
 
             smtp.sendMimeMessage("Hanime (No-Reply)", u.getEmail(), "[Hanime] Password Recovery", text);
         } catch (Exception e) {

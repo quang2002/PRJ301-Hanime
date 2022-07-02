@@ -26,7 +26,6 @@ public class GlobalConstants {
     public static final String DOMAIN = "localhost";
     public static final Integer PORT = 9999;
 
-    public static final String HOST = DOMAIN + ":" + PORT;
-    public static final String CONTEXT_PATH = "/Hanime";
+    public static final String HOST = DOMAIN + ":" + PORT + "/Hanime";
     public static final String COMMENT_WSPATH = "/comment";
 }
