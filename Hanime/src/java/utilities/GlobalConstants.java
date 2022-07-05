@@ -20,7 +20,7 @@ public class GlobalConstants {
     public static final String SQL_SERVER_NAME = "localhost";
     public static final String SQL_DATABASE_NAME = "Hanime";
     public static final String SQL_USERNAME = "sa";
-    public static final String SQL_PASSWORD = "271102";
+    public static final String SQL_PASSWORD = "123";
 
     // Deployment
     public static final String DOMAIN = "localhost";
