@@ -8,8 +8,10 @@ import entities.User;
 import entities.Comment;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -21,7 +23,7 @@ public class CommentModel extends ModelBase<Comment> {
         super(Comment.class);
     }
 
-    public List<Object[]> getCommentsByPage(Long videoId, int page, int size) throws SQLException {
+    public List<Map.Entry<User, Comment>> getCommentsByPage(Long videoId, int page, int size) throws SQLException {
         String sql
                 = "SELECT * FROM [Comment], [User] \n"
                 + "WHERE [User].[ID] = [Comment].[UserID] AND [Comment].[VideoID] = " + videoId + "\n"
@@ -30,10 +32,10 @@ public class CommentModel extends ModelBase<Comment> {
                 + "FETCH NEXT " + size + " ROWS ONLY";
 
         try ( ResultSet rs = getConnection().executeQuery(sql)) {
-            List<Object[]> comments = new ArrayList<>();
+            List<Map.Entry<User, Comment>> comments = new ArrayList<>();
 
             while (rs.next()) {
-                comments.add(new Object[]{new User(rs), new Comment(rs)});
+                comments.add(new AbstractMap.SimpleEntry<>(new User(rs), new Comment(rs)));
             }
 
             return comments;

@@ -37,6 +37,7 @@ CREATE TABLE [User] (
 	[DOB]			DATE,
 	[Gender]		BIT NOT NULL,
 	[Phone]			VARCHAR (12),
+	[Exp]			INT DEFAULT 0,
 
 	[NotifyVideoUpload]			BIT DEFAULT 1,
 	[NotifyFriendRequest]		BIT DEFAULT 1,

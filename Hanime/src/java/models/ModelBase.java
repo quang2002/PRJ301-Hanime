@@ -6,6 +6,7 @@ package models;
 
 import com.yuyu.jdbc.SQLConnection;
 import com.yuyu.jdbc.SQLServerModel;
+import utilities.GlobalConstants;
 
 /**
  *
@@ -25,7 +26,13 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-            connection = new SQLConnection("jdbc:sqlserver://" + serverName + ";databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true", username, password);
+            connection = new SQLConnection(
+                    "jdbc:sqlserver://" + GlobalConstants.SQL_SERVER_NAME
+                    + ";databaseName=" + GlobalConstants.SQL_DATABASE_NAME
+                    + ";encrypt=true;trustServerCertificate=true",
+                    GlobalConstants.SQL_USERNAME,
+                    GlobalConstants.SQL_PASSWORD
+            );
         } catch (Exception e) {
             System.err.println(e);
         }

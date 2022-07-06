@@ -61,11 +61,13 @@
                                     <div class="tab-pane fade active show" id="account-general">
 
                                         <div class="card-body media align-items-center d-flex justify-content-around">
+
                                             <img src="${user.getAvatarUrl()}" alt=""
                                                  class="rounded-circle" style="object-fit: cover; object-position: center;" width="80" height="80" id="img-avatar">
+
                                             <div class="media-body ml-4">
                                                 <label class="btn btn-outline-primary">
-                                                    Upload new photo
+                                                    <span>Upload new photo</span>
                                                     <input type="file" data-img="img-avatar" data-max-size="5242880" data-error-max-size="File không quá 5MB" data-max-width="256" data-max-height="256" class="account-settings-fileinput file-upload" accept="image/*">
                                                     <input type="hidden" name="avatar" value="">
                                                 </label> &nbsp;
@@ -73,9 +75,16 @@
                                             </div>
                                         </div>
 
-                                        <hr class="border-light m-0">
+                                        <hr class="m-0"/>
 
                                         <div class="card-body">
+                                            <div class="d-flex align-items-center mb-4">
+                                                <span>Cấp <c:out value="${user.getLevel()}"></c:out> &emsp;</span>
+                                                    <div class="progress flex-fill" style="height: 10px">
+                                                        <div class="progress-bar" role="progressbar" style="width: ${user.getExp() % 100}%;"></div>
+                                                </div>
+                                            </div>
+
                                             <div class="form-outline mb-4 col-auto">
                                                 <input class="form-control" type="text" value="<c:out value="${user.getFullname()}"></c:out>" name="fullname"/>
                                                     <label class="form-label">Fullname</label>

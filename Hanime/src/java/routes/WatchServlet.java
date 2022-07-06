@@ -34,9 +34,9 @@ public class WatchServlet extends RequireAuthServlet {
 
             Video video = videoModel.get(id);
 
-            video.view += 1;
-
-            videoModel.update(video);
+//            video.view += 1;
+//
+//            videoModel.update(video);
 
             request.setAttribute("video", video);
 
@@ -49,7 +49,6 @@ public class WatchServlet extends RequireAuthServlet {
 
             request.getRequestDispatcher("watch.jsp").forward(request, response);
         } catch (Exception e) {
-            e.printStackTrace();
             response.sendError(404);
         }
     }
