@@ -117,6 +117,10 @@ public class User extends EntityBase {
     public Boolean getGender() {
         return gender;
     }
+    
+    public String getGenderr(){
+        return gender?"Male":"Female";
+    }
 
     public void setGender(Boolean gender) {
         this.gender = gender;

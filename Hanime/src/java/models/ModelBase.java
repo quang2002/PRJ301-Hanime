@@ -20,7 +20,7 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
         final String serverName = "localhost";
         final String databaseName = "Hanime";
         final String username = "sa";
-        final String password = "271102";
+        final String password = "123";
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
