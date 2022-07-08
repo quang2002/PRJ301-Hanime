@@ -61,7 +61,7 @@ public class User extends EntityBase {
 
     public User(ResultSet rs) throws SQLException {
         this(
-                rs.getLong("UserID"),
+                rs.getLong("ID"),
                 rs.getString("AvatarURL"),
                 rs.getNString("Fullname"),
                 rs.getNString("Email"),

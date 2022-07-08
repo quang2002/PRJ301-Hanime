@@ -44,28 +44,23 @@ public class UserModel extends ModelBase<User> {
         }
         return null;
     }
-    
+    public int increaseUserExp(Long uid, int exp) throws Exception {
+        User user = get(uid);
+        user.setExp(user.getExp() + exp);
+        update(user);
+        return user.getExp();
+    }
     public List<User> getTopUsersByExp(int top) throws SQLException{
         String sql 
-                = "SELECT TOP " + top + " * FROM [User]"
+                = "SELECT TOP " + top + " User.Fullname,  FROM [User],[Comment],[Follow],[Rate]"
+                + "WHERE [User.ID]=[Comment.UserID]"
+                + "AND [User.ID]=[Follow.UserID]"
+                + "AND [User.ID]=[Rate.UserID]"
                 + "ORDER BY [Exp] DESC";
         try (ResultSet rs = getConnection().executeQuery(sql)) {
             List<User> list = new ArrayList<>();
             while(rs.next()){
-                Long id = rs.getLong("ID");
-                String avatarUrl = rs.getString("AvatarURL");
-                String fullname = rs.getNString("Fullname");
-                String email = rs.getNString("Email");
-                String address = rs.getNString("Address");
-                Date dob = rs.getDate("DOB");
-                Boolean gender = rs.getBoolean("Gender");
-                String phone = rs.getString("Phone");
-
-                Boolean notifyVideoUpload = rs.getBoolean("NotifyVideoUpload");
-                Boolean notifyFriendRequest = rs.getBoolean("NotifyFriendRequest");
-                Boolean notifyNews = rs.getBoolean("NotifyNews");
-                Boolean notifyUpdates = rs.getBoolean("NotifyUpdates");
-                list.add(new User(id, avatarUrl, fullname, email, address, dob, gender, phone, notifyVideoUpload, notifyFriendRequest, notifyNews, notifyUpdates));
+                list.add(new User(rs));
             }
             return list;
         }

@@ -287,3 +287,15 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+a {
+    cursor: pointer;
+}
+
+.CT {
+    display: none;
+}
+
+.TabShow{
+    display: initial;
+}

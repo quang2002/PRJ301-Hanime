@@ -7,13 +7,17 @@ package routes;
 
 import entities.Video;
 import entities.User;
+import entities.Comment;
+import entities.Rate;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import models.CommentModel;
+import models.RateModel;
 import models.UserModel;
 import models.VideoModel;
 
@@ -21,6 +25,7 @@ import models.VideoModel;
  *
  * @author golde
  */
+@WebServlet(urlPatterns = {"/admin"})
 public class AdminServlet extends HttpServlet {
 
     @Override
@@ -28,17 +33,18 @@ public class AdminServlet extends HttpServlet {
     throws ServletException, IOException {
         //if isAdmin
         try {
+            List<User> users = new UserModel().getall();
             List<Video> videos = new VideoModel().getall();
-            int totalView = 0;
-            int totalComment = 0;
-            for (Video video : videos) {
-                totalView += video.getView();
-                totalComment +=new CommentModel().getCommentCount(video.getFilmId());
-            }
-            List<User> users = new UserModel().getTopUsersByExp(5);
-            request.setAttribute("topUsers", users);
+            List<Comment> comments = new CommentModel().getall();
+            List<Rate> rates = new RateModel().getall();
+            List<User> topUsers = new UserModel().getTopUsersByExp(5);
+            List<Video> topVideos = new VideoModel().
+            request.setAttribute("videos", videos);
+            request.setAttribute("topUsers", topUsers);
+            request.setAttribute("totalUser", totalComment);
             request.setAttribute("totalView", totalView);
             request.setAttribute("totalComment", totalComment);
+            request.setAttribute("totalRate", totalView);
         } catch (Exception e) {
             System.err.println(e);
         }

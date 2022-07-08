@@ -6,6 +6,8 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -31,6 +33,15 @@ public class Rate extends EntityBase {
         this.videoId = videoId;
         this.userId = userId;
         this.rate = rate;
+    }
+    
+    public Rate(ResultSet rs) throws SQLException{
+        this(
+                rs.getLong("ID"),
+                rs.getLong("VideoID"),
+                rs.getLong("UserID"),
+                rs.getInt("Rate")
+        );
     }
 
     public Long getVideoId() {

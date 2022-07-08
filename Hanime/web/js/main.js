@@ -65,7 +65,7 @@
 
 
     // Worldwide Sales Chart
-    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
+    var ctx1 = $("#recent-view").get(0).getContext("2d");
     var myChart1 = new Chart(ctx1, {
         type: "bar",
         data: {
@@ -209,4 +209,14 @@
 
     
 })(jQuery);
+
+function changeState(e){
+    var laste = document.querySelector(".active");
+    laste.classList.remove("active");
+    var lastTab = laste.id;
+    document.querySelector("#"+lastTab+"CT").classList.remove("TabShow");
+    e.classList.add("active");
+    var currTab = e.id;
+    document.querySelector("#"+currTab+"CT").classList.add("TabShow");
+}
 
