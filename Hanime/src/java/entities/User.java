@@ -101,8 +101,12 @@ public class User extends EntityBase {
         this.avatarUrl = avatarUrl;
     }
 
-    public String getFullname() {
+    public String getFullname(){
         return fullname;
+    }
+    
+    public String getFullname2() {
+        return fullname==null?"Unknown":fullname;
     }
 
     public void setFullname(String fullname) {

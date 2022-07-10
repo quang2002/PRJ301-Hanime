@@ -52,10 +52,7 @@ public class UserModel extends ModelBase<User> {
     }
     public List<User> getTopUsersByExp(int top) throws SQLException{
         String sql 
-                = "SELECT TOP " + top + " User.Fullname,  FROM [User],[Comment],[Follow],[Rate]"
-                + "WHERE [User.ID]=[Comment.UserID]"
-                + "AND [User.ID]=[Follow.UserID]"
-                + "AND [User.ID]=[Rate.UserID]"
+                = "SELECT TOP " + top + " * FROM [User]"
                 + "ORDER BY [Exp] DESC";
         try (ResultSet rs = getConnection().executeQuery(sql)) {
             List<User> list = new ArrayList<>();

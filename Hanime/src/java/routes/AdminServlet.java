@@ -38,13 +38,13 @@ public class AdminServlet extends HttpServlet {
             List<Comment> comments = new CommentModel().getall();
             List<Rate> rates = new RateModel().getall();
             List<User> topUsers = new UserModel().getTopUsersByExp(5);
-            List<Video> topVideos = new VideoModel().
+            int totalView = new VideoModel().getAllView();
             request.setAttribute("videos", videos);
             request.setAttribute("topUsers", topUsers);
-            request.setAttribute("totalUser", totalComment);
+            request.setAttribute("totalUser", users.size());
             request.setAttribute("totalView", totalView);
-            request.setAttribute("totalComment", totalComment);
-            request.setAttribute("totalRate", totalView);
+            request.setAttribute("totalComment", comments.size());
+            request.setAttribute("totalRate", rates.size());
         } catch (Exception e) {
             System.err.println(e);
         }

@@ -182,10 +182,10 @@
                                         <c:forEach var="item" items="${topUsers}">
 
                                             <tr>
-                                                <td>${item.getFullname()}</td>
+                                                <td>${item.getFullname2()}</td>
                                                 <td>${item.getEmail()}</td>
                                                 <td>${item.getGenderr()}</td>
-
+                                                <td>${item.getExp()}</td>
                                             </tr>
                                         </c:forEach>
 
@@ -207,19 +207,18 @@
                                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-white">
-                                            <th scope="col">Fullname</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Exp</th>
+                                            <th scope="col">Identity</th>
+                                            <th scope="col">Comment</th>
+                                            <th scope="col">Film</th>
+                                            <th scope="col">Video</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="item" items="${topUsers}">
+                                        <c:forEach var="item" items="${recentComments}">
 
                                             <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
+                                                <td>${item.getFullname()}<br>${item.getEmail()}</td>
+                                                <td>${item.get}</td>
 
                                             </tr>
                                         </c:forEach>

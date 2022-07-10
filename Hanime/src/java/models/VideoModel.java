@@ -7,6 +7,7 @@ package models;
 import entities.Film;
 import entities.Video;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,5 +105,14 @@ public class VideoModel extends ModelBase<Video> {
         }
 
         return video;
+    }
+    
+    public int getAllView() throws Exception{
+        int totalView = 0;
+        List<Video> videos = getall();
+        for (Video video : videos) {
+            totalView+= video.view;
+        }
+        return totalView;
     }
 }
