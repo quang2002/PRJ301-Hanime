@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Hanime/lib/yuyu-db.jar",
+        "Hanime/lib/jakarta.servlet.jsp.jstl-2.0.0.jar",
+        "Hanime/lib/jakarta.servlet.jsp.jstl-api-2.0.0.jar",
+        "Hanime/lib/javax.mail.jar",
+        "Hanime/lib/org.json.jar",
+        "Hanime/lib/servlet3.1-jsp2.3-api.jar",
+        "Hanime/lib/jakarta.servlet-api-4.0.2.jar",
+        "Hanime/lib/javatuples-1.2.jar"
+    ]
+}

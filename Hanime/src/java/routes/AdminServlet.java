@@ -5,10 +5,7 @@
 
 package routes;
 
-import entities.Video;
-import entities.User;
-import entities.Comment;
-import entities.Rate;
+import entities.*;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,10 +13,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
+
 import models.CommentModel;
+import models.FilmModel;
 import models.RateModel;
 import models.UserModel;
 import models.VideoModel;
+
+import org.javatuples.*;
 
 /**
  *
@@ -38,8 +40,13 @@ public class AdminServlet extends HttpServlet {
             List<Comment> comments = new CommentModel().getall();
             List<Rate> rates = new RateModel().getall();
             List<User> topUsers = new UserModel().getTopUsersByExp(5);
+            List<Quintet<String,String,String,String,String>> recentComments = new CommentModel().getRecentComments(5);
+            //List<Quintet<Integer,String,String,Integer,Integer>> topFilms;
             int totalView = new VideoModel().getAllView();
             request.setAttribute("videos", videos);
+            request.setAttribute("recentComments",recentComments);
+            //request.setAttribute("topFilms", topFilms);
+            //request.setAttribute("topVideos", topVideos);
             request.setAttribute("topUsers", topUsers);
             request.setAttribute("totalUser", users.size());
             request.setAttribute("totalView", totalView);

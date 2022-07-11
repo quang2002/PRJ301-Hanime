@@ -7,6 +7,8 @@ package entities;
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,7 +19,7 @@ public class Video extends EntityBase {
 
     @SQLColumn(column = "Name")
     public String name;
-    
+
     @SQLColumn(column = "ThumbnailURL")
     public String thumbnailUrl;
 
@@ -39,7 +41,8 @@ public class Video extends EntityBase {
     public Video() {
     }
 
-    public Video(Long id, String name, String thumbnailUrl, String videoUrl, Date releaseDate, Integer length, Long view, Long filmId) {
+    public Video(Long id, String name, String thumbnailUrl, String videoUrl, Date releaseDate, Integer length,
+            Long view, Long filmId) {
         super(id);
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
@@ -48,6 +51,18 @@ public class Video extends EntityBase {
         this.length = length;
         this.view = view;
         this.filmId = filmId;
+    }
+
+    public Video(ResultSet rs) throws SQLException {
+        this(
+                rs.getLong("ID"),
+                rs.getNString("Name"),
+                rs.getString("ThumbnailURL"),
+                rs.getString("VideoURL"),
+                rs.getDate("ReleaseDate"),
+                rs.getInt("Length"),
+                rs.getLong("View"),
+                rs.getLong("FilmID"));
     }
 
     public String getName() {

@@ -4,6 +4,9 @@
  */
 package entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
 
@@ -31,6 +34,15 @@ public class Film extends EntityBase {
         this.name = name;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public Film(ResultSet rs) throws SQLException{
+        this(
+            rs.getLong("ID"),
+            rs.getString("Name"),
+            rs.getString("Description"),
+            rs.getString("ThumbnailURL")
+        );
     }
 
     public String getName() {

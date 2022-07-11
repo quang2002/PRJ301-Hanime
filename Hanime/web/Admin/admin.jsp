@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="org.javatuples.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -209,7 +210,6 @@
                                         <tr class="text-white">
                                             <th scope="col">Identity</th>
                                             <th scope="col">Comment</th>
-                                            <th scope="col">Film</th>
                                             <th scope="col">Video</th>
                                         </tr>
                                     </thead>
@@ -217,8 +217,9 @@
                                         <c:forEach var="item" items="${recentComments}">
 
                                             <tr>
-                                                <td>${item.getFullname()}<br>${item.getEmail()}</td>
-                                                <td>${item.get}</td>
+                                                <td><span style="color:white;">${item.getValue0()}</span><br>${item.getValue1()}</td>
+                                                <td>${item.getValue2()}</td>
+                                                <td><span style="color:white;">${item.getValue4()}</span><br>${item.getValue3()}</td>
 
                                             </tr>
                                         </c:forEach>
@@ -230,25 +231,25 @@
                     </div>
                     <!-- Recent comments End -->
 
-                    <!-- Recent rates Start -->
+                    <!-- Top Film Start -->
                     <div class="container-fluid pt-4 px-4">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Recent Rates</h6>
+                                <h6 class="mb-0">Top Films</h6>
                                 <a href="/Hanime/users">Show All</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-white">
-                                            <th scope="col">Fullname</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Exp</th>
+                                            <th scope="col">Top</th>
+                                            <th scope="col">Film</th>
+                                            <th scope="col">View</th>
+                                            <th scope="col">Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="item" items="${topUsers}">
+                                        <c:forEach var="item" items="${topFilms}">
 
                                             <tr>
                                                 <td>${item.getFullname()}</td>
@@ -263,7 +264,42 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Recent rates End -->
+                    <!-- Top Film End -->
+
+                    <!-- Top Video Start -->
+                    <div class="container-fluid pt-4 px-4">
+                        <div class="bg-secondary text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Top Videos</h6>
+                                <a href="/Hanime/users">Show All</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr class="text-white">
+                                            <th scope="col">Top</th>
+                                            <th scope="col">Video</th>
+                                            <th scope="col">View</th>
+                                            <th scope="col">Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="item" items="${topVideos}">
+
+                                            <tr>
+                                                <td>${item.getFullname()}</td>
+                                                <td>${item.getEmail()}</td>
+                                                <td>${item.getGenderr()}</td>
+
+                                            </tr>
+                                        </c:forEach>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Top Video End -->
                 </div>                               
                 <!-- DashBoard End -->
 
