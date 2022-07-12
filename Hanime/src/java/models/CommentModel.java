@@ -65,7 +65,7 @@ public class CommentModel extends ModelBase<Comment> {
         try ( ResultSet rs = getConnection().executeQuery(sql)) {
             List<Quintet<String,String,String,String,String>> comments = new ArrayList<>() ;
                 while (rs.next()) {
-                    comments.add(new Quintet<String,String,String,String,String>(
+                    comments.add(new Quintet<>(
                         rs.getString("Name")!=null?rs.getString("Name"):"Unknown", 
                         rs.getString("Email"), 
                         rs.getString("Content"), 

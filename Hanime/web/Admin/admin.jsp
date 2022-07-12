@@ -245,6 +245,7 @@
                                             <th scope="col">Top</th>
                                             <th scope="col">Film</th>
                                             <th scope="col">View</th>
+                                            <th scope="col">Follow</th>
                                             <th scope="col">Rate</th>
                                         </tr>
                                     </thead>
@@ -252,9 +253,11 @@
                                         <c:forEach var="item" items="${topFilms}">
 
                                             <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
+                                                <td>${item.getValue0()}</td>
+                                                <td>${item.getValue1()}</td>
+                                                <td>${item.getValue2()}</td>
+                                                <td>${item.getValue3()}</td>
+                                                <td>${item.getValue4()}<br>${item.getValue5()} rates</td>
 
                                             </tr>
                                         </c:forEach>
@@ -303,154 +306,6 @@
                 </div>                               
                 <!-- DashBoard End -->
 
-                <!-- Users Manage Start -->
-                <div id="UsersCT" class="CT">
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Top Users</h6>
-                                <a href="/Hanime/users">Show All</a>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                    <thead>
-                                        <tr class="text-white">
-                                            <th scope="col">Fullname</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Exp</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="item" items="${topUsers}">
-
-                                            <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
-
-                                            </tr>
-                                        </c:forEach>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Users Manage End -->
-
-                <!-- Videos Manage Start -->
-                <div id="VideosCT" class="CT">
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Top Users</h6>
-                                <a href="/Hanime/users">Show All</a>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                    <thead>
-                                        <tr class="text-white">
-                                            <th scope="col">Fullname</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Exp</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="item" items="${topUsers}">
-
-                                            <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
-
-                                            </tr>
-                                        </c:forEach>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Videos Manage End -->
-
-                <!-- Comments Manage Start -->
-                <div id="CommentsCT" class="CT">
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Top Users</h6>
-                                <a href="/Hanime/users">Show All</a>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                    <thead>
-                                        <tr class="text-white">
-                                            <th scope="col">Fullname</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Exp</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="item" items="${topUsers}">
-
-                                            <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
-
-                                            </tr>
-                                        </c:forEach>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comments Manage End -->
-
-                <!-- Rates Manage Start -->
-                <div id="RatesCT" class="CT">
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="bg-secondary text-center rounded p-4">
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Top Users</h6>
-                                <a href="/Hanime/users">Show All</a>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                    <thead>
-                                        <tr class="text-white">
-                                            <th scope="col">Fullname</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Gender</th>
-                                            <th scope="col">Exp</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="item" items="${topUsers}">
-
-                                            <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
-
-                                            </tr>
-                                        </c:forEach>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Rates Manage End -->
-
                 <!-- Footer Start -->
                 <div class="container-fluid pt-4 px-4">
                     <div class="bg-secondary rounded-top p-4">
@@ -483,7 +338,6 @@
         <script src="lib/waypoints/waypoints.min.js"></script>
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
         <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
         <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
         <!-- Template Javascript -->

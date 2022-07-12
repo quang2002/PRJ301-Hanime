@@ -39,13 +39,13 @@ public class AdminServlet extends HttpServlet {
             List<Video> videos = new VideoModel().getall();
             List<Comment> comments = new CommentModel().getall();
             List<Rate> rates = new RateModel().getall();
-            List<User> topUsers = new UserModel().getTopUsersByExp(5);
-            List<Quintet<String,String,String,String,String>> recentComments = new CommentModel().getRecentComments(5);
-            //List<Quintet<Integer,String,String,Integer,Integer>> topFilms;
+            List<User> topUsers = new UserModel().getTopUsersByExp(10);
+            List<Quintet<String,String,String,String,String>> recentComments = new CommentModel().getRecentComments(10);
+            List<Septet<Integer, String, Integer, Integer, Double,Integer, Double>> topFilms = new FilmModel().getTopFilms(10);
             int totalView = new VideoModel().getAllView();
             request.setAttribute("videos", videos);
             request.setAttribute("recentComments",recentComments);
-            //request.setAttribute("topFilms", topFilms);
+            request.setAttribute("topFilms", topFilms);
             //request.setAttribute("topVideos", topVideos);
             request.setAttribute("topUsers", topUsers);
             request.setAttribute("totalUser", users.size());
