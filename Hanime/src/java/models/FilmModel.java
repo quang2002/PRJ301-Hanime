@@ -39,7 +39,7 @@ public class FilmModel extends ModelBase<Film> {
                 + "WITH [t] AS\n"
                 + "(SELECT [temp].*, COUNT([temp].[Film]) AS [Follow] FROM [temp] LEFT JOIN [Follow] ON [temp].[FilmID] = [Follow].[FilmID]\n"
                 + "GROUP BY [temp].[Film],[temp].[FilmID],[temp].[Rate], [temp].[RateCount], [temp].[View] --, [temp].[Score]\n"
-                + ") SELECT [t].[Film], [t].[View], ROUND(ISNULL([t].[Rate]/[t].[RateCount],0),2) AS [Rate], [t].[RateCount], [t].[Follow],\n"
+                + ") SELECT TOP " +top+ " [t].[Film], [t].[View], ROUND(ISNULL([t].[Rate]/[t].[RateCount],0),2) AS [Rate], [t].[RateCount], [t].[Follow],\n"
                 + "ROUND(ISNULL([t].[View]+[t].[Follow]*2 + [t].[Rate]/[t].[RateCount]*3,0),2) AS [Score] FROM [t]\n"
                 + "ORDER BY [Score] DESC\n"
                 + "drop table [temp]";

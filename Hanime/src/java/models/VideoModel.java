@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.javatuples.Sextet;
+
 /**
  *
  * @author yuyu2
@@ -106,13 +108,46 @@ public class VideoModel extends ModelBase<Video> {
 
         return video;
     }
-    
-    public int getAllView() throws Exception{
+
+    public int getAllView() throws Exception {
         int totalView = 0;
         List<Video> videos = getall();
         for (Video video : videos) {
-            totalView+= video.view;
+            totalView += video.view;
         }
         return totalView;
+    }
+
+    public List<Sextet<Integer, String, String, Integer, Double, Double>> getTopVideos(int top) throws SQLException {
+        String sql
+                = "WITH [a] AS\n"
+                + "(SELECT [Video].[Name],\n"
+                + "[Film].[Name] AS [Film],\n"
+                + "[Film].[ID] AS [FilmID],\n"
+                + "[Video].[View], \n"
+                + "(SELECT (AVG(CAST([Rate].[Rate] AS REAL))) FROM [Rate] WHERE [Rate].[VideoID] = [Video].[ID]) AS [Rate]\n"
+                + "FROM [Video], [Film]\n"
+                + "WHERE [Video].[FilmID] = [Film].[ID])\n"
+                + "SELECT TOP " + top + " [a].[Name] AS [Video], [a].[Film], [a].[View], ISNULL([a].[Rate],0) AS [Rate],\n"
+                + "ISNULL([a].[View]+[a].[Rate]*3,0) AS [Score]\n"
+                + "FROM [a]";
+        try ( ResultSet rs = getConnection().executeQuery(sql)) {
+            List<Sextet<Integer, String, String, Integer, Double, Double>> list = new ArrayList<>();
+            int topOnBoard = 1;
+            while (rs.next()) {
+                list.add(
+                        new Sextet<>(
+                                topOnBoard++,
+                                rs.getString("Video"),
+                                rs.getString("Film"),
+                                rs.getInt("View"),
+                                rs.getDouble("Rate"),
+                                rs.getDouble("Score")
+                        )
+                );
+            }
+            return list;
+        }
+
     }
 }

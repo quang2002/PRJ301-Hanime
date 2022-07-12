@@ -42,11 +42,12 @@ public class AdminServlet extends HttpServlet {
             List<User> topUsers = new UserModel().getTopUsersByExp(10);
             List<Quintet<String,String,String,String,String>> recentComments = new CommentModel().getRecentComments(10);
             List<Septet<Integer, String, Integer, Integer, Double,Integer, Double>> topFilms = new FilmModel().getTopFilms(10);
+            List<Sextet<Integer, String, String, Integer, Double, Double>> topVideos = new VideoModel().getTopVideos(10);
             int totalView = new VideoModel().getAllView();
             request.setAttribute("videos", videos);
             request.setAttribute("recentComments",recentComments);
             request.setAttribute("topFilms", topFilms);
-            //request.setAttribute("topVideos", topVideos);
+            request.setAttribute("topVideos", topVideos);
             request.setAttribute("topUsers", topUsers);
             request.setAttribute("totalUser", users.size());
             request.setAttribute("totalView", totalView);

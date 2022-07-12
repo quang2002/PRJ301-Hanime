@@ -290,9 +290,10 @@
                                         <c:forEach var="item" items="${topVideos}">
 
                                             <tr>
-                                                <td>${item.getFullname()}</td>
-                                                <td>${item.getEmail()}</td>
-                                                <td>${item.getGenderr()}</td>
+                                                <td>${item.getValue0()}</td>
+                                                <td>${item.getValue1()}<br>${item.getValue2()}</td>
+                                                <td>${item.getValue3()}</td>
+                                                <td>${item.getValue4()}<br>${item.getValue5()} rates</td>
 
                                             </tr>
                                         </c:forEach>
