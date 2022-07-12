@@ -257,7 +257,7 @@
                                                 <td>${item.getValue1()}</td>
                                                 <td>${item.getValue2()}</td>
                                                 <td>${item.getValue3()}</td>
-                                                <td>${item.getValue4()}<br>${item.getValue5()} rates</td>
+                                                <td><span style="color:white;">${item.getValue4()}</span><br>${item.getValue5()} rates</td>
 
                                             </tr>
                                         </c:forEach>
@@ -291,9 +291,9 @@
 
                                             <tr>
                                                 <td>${item.getValue0()}</td>
-                                                <td>${item.getValue1()}<br>${item.getValue2()}</td>
+                                                <td><span style="color:white;">${item.getValue1()}</span><br>${item.getValue2()}</td>
                                                 <td>${item.getValue3()}</td>
-                                                <td>${item.getValue4()}<br>${item.getValue5()} rates</td>
+                                                <td>${item.getValue4()}</td>
 
                                             </tr>
                                         </c:forEach>
