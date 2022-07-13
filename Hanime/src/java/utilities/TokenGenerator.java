@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilities;
 
 import java.util.Base64;
@@ -11,10 +7,6 @@ import javax.crypto.spec.SecretKeySpec;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- *
- * @author yuyu2
- */
 public class TokenGenerator {
 
     public static String generate(HashMap<String, Object> data, String key) {

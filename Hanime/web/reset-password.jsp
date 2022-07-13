@@ -1,9 +1,3 @@
-<%-- 
-    Document   : forgot-password
-    Created on : Jun 12, 2022, 6:22:23 PM
-    Author     : yuyu2
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="utilities.GlobalConstants" %>
 <!DOCTYPE html>
@@ -13,7 +7,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hanime</title>
-
         <link rel="shortcut icon" href="assets/favicon.png">
 
         <!-- Custom CSS -->
@@ -49,7 +42,7 @@
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="password" id="password" class="form-control" name="password"
-                                                       required />
+                                                       required pattern="\S{8,}"/>
                                                 <label class="form-label" for="password">Password</label>
                                             </div>
                                         </div>
@@ -81,7 +74,7 @@
             </div>
         </section>
 
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
     </body>
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
 </html>

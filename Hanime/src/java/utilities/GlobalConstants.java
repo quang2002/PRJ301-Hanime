@@ -13,6 +13,8 @@ public class GlobalConstants {
     public static final String AUTH_SECRET_KEY = "50rrY_14m_G4y";
 
     // SMTP Account
+    public static final String SMTP_HOST = "smtp-mail.outlook.com";
+    public static final String SMTP_PORT = "587";
     public static final String SMTP_ACCOUNT_EMAIL = "prj301-hanime@outlook.com";
     public static final String SMTP_ACCOUNT_PASSWORD = "/>B89,S5AUZnZh4V";
 
@@ -26,7 +28,6 @@ public class GlobalConstants {
     public static final String DOMAIN = "localhost";
     public static final Integer PORT = 9999;
 
-    public static final String HOST = DOMAIN + ":" + PORT;
-    public static final String CONTEXT_PATH = "/Hanime";
+    public static final String HOST = DOMAIN + ":" + PORT + "/Hanime";
     public static final String COMMENT_WSPATH = "/comment";
 }

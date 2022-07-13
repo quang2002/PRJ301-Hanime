@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package routes;
 
 import jakarta.servlet.ServletException;
@@ -13,10 +9,6 @@ import java.io.IOException;
 import models.Procedures;
 import utilities.Authentication;
 
-/**
- *
- * @author yuyu2
- */
 @WebServlet(urlPatterns = {"/signin"})
 public class SigninServlet extends HttpServlet {
 

@@ -1,19 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
 
-/**
- *
- * @author yuyu2
- */
 @SQLTable(table = "Film")
 public class Film extends EntityBase {
 
@@ -34,15 +23,6 @@ public class Film extends EntityBase {
         this.name = name;
         this.description = description;
         this.thumbnailUrl = thumbnailUrl;
-    }
-
-    public Film(ResultSet rs) throws SQLException{
-        this(
-            rs.getLong("ID"),
-            rs.getString("Name"),
-            rs.getString("Description"),
-            rs.getString("ThumbnailURL")
-        );
     }
 
     public String getName() {

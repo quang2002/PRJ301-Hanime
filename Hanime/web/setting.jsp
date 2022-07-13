@@ -1,9 +1,3 @@
-<%-- 
-    Document   : setting
-    Created on : Jun 11, 2022, 5:27:30 PM
-    Author     : yuyu2
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -13,7 +7,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hanime</title>
-
         <link rel="shortcut icon" href="assets/favicon.png">
 
         <!-- Custom CSS -->
@@ -79,107 +72,106 @@
 
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-4">
-                                                <span>Cấp <c:out value="${user.getLevel()}"></c:out> &emsp;</span>
-                                                    <div class="progress flex-fill" style="height: 10px">
-                                                        <div class="progress-bar" role="progressbar" style="width: ${user.getExp() % 100}%;"></div>
+                                                <span>Cấp <c:out value="${user.getLevel()}"/> &emsp;</span>
+                                                <div class="progress flex-fill" style="height: 10px" data-mdb-toggle="tooltip" data-mdb-original-title="${user.getExp() % 100} / 100">
+                                                    <div class="progress-bar" role="progressbar" style="width: ${user.getExp() % 100}%;"></div>
                                                 </div>
                                             </div>
 
                                             <div class="form-outline mb-4 col-auto">
-                                                <input class="form-control" type="text" value="<c:out value="${user.getFullname()}"></c:out>" name="fullname"/>
-                                                    <label class="form-label">Fullname</label>
-                                                </div>
-
-                                                <div class="btn-group d-flex flex-row align-items-center mb-4">
-                                                    <input type="radio" class="btn-check" name="gender" id="gender-female"
-                                                           autocomplete="off" value="female" <c:if test="${!user.getGender()}">checked</c:if> />
-                                                    <label class="btn btn-light" for="gender-female">
-                                                        Female <i class="fa-solid fa-venus"></i>
-                                                    </label>
-
-                                                    <input type="radio" class="btn-check" name="gender" id="gender-male"
-                                                           autocomplete="off" value="male" <c:if test="${user.getGender()}">checked</c:if> />
-                                                    <label class="btn btn-light" for="gender-male">
-                                                        Male <i class="fa-solid fa-mars"></i>
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-outline mb-4">
-                                                    <input type="date" class="form-control" value="<c:out value="${user.getDob()}"></c:out>" name="birthdate">
-                                                    <label class="form-label">Birthdate</label>
-                                                </div>
-
-                                                <div class="form-outline mb-4">
-                                                    <input type="tel" class="form-control" value="<c:out value="${user.getPhone()}"></c:out>" name="phone">
-                                                    <label class="form-label">Phone</label>
-                                                </div>
-
-                                                <div class="form-outline mb-4">
-                                                    <input type="email" class="form-control mb-1" value="<c:out value="${user.getEmail()}"></c:out>" name="email">
-                                                    <label class="form-label">E-mail</label>
-                                                </div>
-
-                                                <!--
-                                                <div class="alert alert-warning mt-3">
-                                                    Your email is not confirmed. Please check your inbox.<br>
-                                                    <a href="javascript:void(0)">Resend confirmation</a>
-                                                </div>
-                                                -->
-
-                                                <div class="form-outline mb-4">
-                                                    <textarea class="form-control mb-1" style="resize: none;" rows="5"
-                                                              name="address"><c:out value="${user.getAddress()}"></c:out></textarea>
-                                                    <label class="form-label">Address</label>
-                                                </div>
+                                                <input class="form-control" type="text" value="<c:out value="${user.getFullname()}"/>" name="fullname"/>
+                                                <label class="form-label">Fullname</label>
                                             </div>
 
-                                        </div>
+                                            <div class="btn-group d-flex flex-row align-items-center mb-4">
+                                                <input type="radio" class="btn-check" name="gender" id="gender-female"
+                                                       autocomplete="off" value="female" <c:if test="${!user.getGender()}">checked</c:if> />
+                                                       <label class="btn btn-light" for="gender-female">
+                                                           Female <i class="fa-solid fa-venus"></i>
+                                                       </label>
 
-                                        <div class="tab-pane fade" id="account-change-password">
-                                            <div class="card-body pb-2">
-
-                                                <div class="form-outline mb-4">
-                                                    <input type="password" class="form-control" name="old-password">
-                                                    <label class="form-label">Current password</label>
+                                                       <input type="radio" class="btn-check" name="gender" id="gender-male"
+                                                              autocomplete="off" value="male" <c:if test="${user.getGender()}">checked</c:if> />
+                                                       <label class="btn btn-light" for="gender-male">
+                                                           Male <i class="fa-solid fa-mars"></i>
+                                                       </label>
                                                 </div>
 
                                                 <div class="form-outline mb-4">
-                                                    <input type="password" class="form-control" name="new-password">
-                                                    <label class="form-label">New password</label>
-                                                </div>
+                                                    <input type="date" class="form-control" value="<c:out value="${user.getDob()}"/>" name="birthdate">
+                                                <label class="form-label">Birthdate</label>
+                                            </div>
 
-                                                <div class="form-outline mb-4">
-                                                    <input type="password" class="form-control" name="confirm-password">
-                                                    <label class="form-label">Repeat new password</label>
-                                                </div>
+                                            <div class="form-outline mb-4">
+                                                <input type="tel" class="form-control" value="<c:out value="${user.getPhone()}"/>" name="phone">
+                                                <label class="form-label">Phone</label>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <input type="email" class="form-control mb-1" value="<c:out value="${user.getEmail()}"/>" name="email">
+                                                <label class="form-label">E-mail</label>
+                                            </div>
+
+                                            <!--
+                                            <div class="alert alert-warning mt-3">
+                                                Your email is not confirmed. Please check your inbox.<br>
+                                                <a href="javascript:void(0)">Resend confirmation</a>
+                                            </div>
+                                            -->
+
+                                            <div class="form-outline mb-4">
+                                                <textarea class="form-control mb-1" style="resize: none;" rows="5"
+                                                          name="address"><c:out value="${user.getAddress()}"/></textarea>
+                                                <label class="form-label">Address</label>
                                             </div>
                                         </div>
 
-                                        <div class="tab-pane fade" id="account-notifications">
-                                            <div class="card-body pb-2">
+                                    </div>
 
-                                                <h6 class="mb-4">Activity</h6>
+                                    <div class="tab-pane fade" id="account-change-password">
+                                        <div class="card-body pb-2">
 
-                                                <div class="form-group mb-4">
-                                                    <label class="switcher">
-                                                        <input type="checkbox" class="switcher-input" name="notify-video-upload" <c:if test="${user.isNotifyVideoUpload()}">checked</c:if>>
+                                            <div class="form-outline mb-4">
+                                                <input type="password" class="form-control" name="old-password">
+                                                <label class="form-label">Current password</label>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <input type="password" class="form-control" name="new-password">
+                                                <label class="form-label">New password</label>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <input type="password" class="form-control" name="confirm-password">
+                                                <label class="form-label">Repeat new password</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="account-notifications">
+                                        <div class="card-body pb-2">
+
+                                            <h6 class="mb-4">Activity</h6>
+
+                                            <div class="form-group mb-4">
+                                                <label class="switcher">
+                                                    <input type="checkbox" class="switcher-input" name="notify-video-upload" <c:if test="${user.isNotifyVideoUpload()}">checked</c:if>>
                                                         <span class="switcher-indicator">
                                                             <span class="switcher-yes"></span>
                                                             <span class="switcher-no"></span>
                                                         </span>
-                                                        <span class="switcher-label">Email me when new video is uploads</span>
+                                                        <span class="switcher-label">Notify me when new video is uploads</span>
                                                     </label>
                                                 </div>
 
-                                                <div class="form-group mb-4">
+                                                <div class="form-group mb-4" style="display: none">
                                                     <label class="switcher">
                                                         <input type="checkbox" class="switcher-input" name="notify-friend-request" <c:if test="${user.isNotifyFriendRequest()}">checked</c:if>>
                                                         <span class="switcher-indicator">
                                                             <span class="switcher-yes"></span>
                                                             <span class="switcher-no"></span>
                                                         </span>
-                                                        <span class="switcher-label">Email me when someone send add friend
-                                                            request</span>
+                                                        <span class="switcher-label">Notify me when someone send add friend request</span>
                                                     </label>
                                                 </div>
                                             </div>

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import com.yuyu.annotations.SQLColumn;
@@ -101,12 +97,8 @@ public class User extends EntityBase {
         this.avatarUrl = avatarUrl;
     }
 
-    public String getFullname(){
+    public String getFullname() {
         return fullname;
-    }
-    
-    public String getFullname2() {
-        return fullname==null?"Unknown":fullname;
     }
 
     public void setFullname(String fullname) {
@@ -139,10 +131,6 @@ public class User extends EntityBase {
 
     public Boolean getGender() {
         return gender;
-    }
-    
-    public String getGenderr(){
-        return gender?"Male":"Female";
     }
 
     public void setGender(Boolean gender) {

@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package routes;
 
 import entities.Film;
+import entities.User;
 import entities.Video;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,31 +10,23 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import models.RateModel;
 import models.VideoModel;
 
-/**
- *
- * @author yuyu2
- */
 @WebServlet(urlPatterns = {"/watch"})
 public class WatchServlet extends RequireAuthServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
         try {
-            if (id == null) {
-                throw null;
-            }
+            Long id = Long.parseLong(request.getParameter("id"));
 
             VideoModel videoModel = new VideoModel();
 
             Video video = videoModel.get(id);
+            User user = getUser(request);
 
-//            video.view += 1;
-//
-//            videoModel.update(video);
-
+            request.setAttribute("rate", new RateModel().getByVideoAndUser(video.getId(), user.getId()));
             request.setAttribute("video", video);
 
             if (video.getFilmId() != null) {
@@ -49,6 +38,7 @@ public class WatchServlet extends RequireAuthServlet {
 
             request.getRequestDispatcher("watch.jsp").forward(request, response);
         } catch (Exception e) {
+            e.printStackTrace();
             response.sendError(404);
         }
     }

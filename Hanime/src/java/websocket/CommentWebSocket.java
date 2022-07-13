@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package websocket;
 
 import entities.Comment;
@@ -15,10 +11,6 @@ import org.json.JSONObject;
 import utilities.Authentication;
 import utilities.GlobalConstants;
 
-/**
- *
- * @author yuyu2
- */
 @jakarta.websocket.server.ServerEndpoint(
         value = GlobalConstants.COMMENT_WSPATH,
         decoders = {JSONDecoder.class},

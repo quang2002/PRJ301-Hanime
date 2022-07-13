@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import com.yuyu.jdbc.SQLConnection;
 import com.yuyu.jdbc.SQLServerModel;
+import java.sql.ResultSet;
 import utilities.GlobalConstants;
 
 /**
@@ -18,11 +15,6 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
     private static SQLConnection connection = null;
 
     static {
-        final String serverName = "localhost";
-        final String databaseName = "Hanime";
-        final String username = "sa";
-        final String password = "123";
-
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
@@ -44,5 +36,16 @@ public abstract class ModelBase<T> extends SQLServerModel<T> {
 
     public static SQLConnection connection() {
         return connection;
+    }
+
+    public Long getLastestID() {
+        try ( ResultSet rs = getConnection().executeQuery("SELECT TOP 1 [ID] FROM [" + getTableName() + "] ORDER BY [ID] DESC")) {
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
 }

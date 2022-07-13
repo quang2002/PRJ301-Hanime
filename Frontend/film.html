@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanime</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="hanime-nav-bar__overlay"></div>
+
+    <header class="hanime-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="hanime-header__nav-bar-btn">
+                <i class="fa-solid fa-bars fa-2xl hanime-header__nav-bar-btn--icon"></i>
+            </div>
+
+            <div class="hanime-header__logo">
+                <object data="assets/logo.svg" width="120px"></object>
+            </div>
+        </div>
+
+        <div class="hanime-header__search-bar">
+            <input type="text" name="q" value="" class="hanime-header__search-bar--input" placeholder="Search" />
+            <div class="hanime-header__search-bar--button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <div class="hanime-header__notification dropdown">
+
+                <a href="#" class="dropdown-toggle" data-mdb-toggle="dropdown" id="dropdownMenuLink">
+                    <i class="fa-solid fa-bell"></i>
+                    <div class="hanime-header__notification--dot"></div>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">Profile updated</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">New user added</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                        <h6 class="fw-normal mb-0">Password changed</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item text-center">See all notifications</a>
+                </div>
+            </div>
+
+            <div class="hanime-header__account">
+                <img src="https://images.squarespace-cdn.com/content/v1/6116ab63480a786f087fad20/1650599374868-S35ZV3OT0AU8KYTH3LBR/superman.png"
+                    alt="avatar" width="30" height="30" class="rounded-circle">
+            </div>
+        </div>
+    </header>
+
+    <nav class="hanime-nav-bar" data-button-class="hanime-header__nav-bar-btn">
+        <div class="hanime-nav-bar__nav-btn-and-logo d-flex align-items-center">
+            <div class="hanime-header__nav-bar-btn">
+                <i class="fa-solid fa-bars fa-2xl hanime-header__nav-bar-btn--icon"></i>
+            </div>
+
+            <div class="hanime-header__logo">
+                <object data="assets/logo.svg" width="120px"></object>
+            </div>
+        </div>
+
+        <div class="hanime-nav-bar__choices">
+            <a href="index.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+
+            <a class="hanime-nav-bar__link position-relative" onmousedown="toggleCategory()">
+                <i class="fa-solid fa-list"></i>
+                <span>Thể loại</span>
+
+                <i class="fa-solid fa-caret-down" style="position: absolute; right: 0;"></i>
+            </a>
+
+            <div class="hanime-nav-bar__category">
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+                <a href="#" class="hanime-nav-bar__category--link">Hentai</a>
+            </div>
+
+            <a href="setting.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-cog"></i>
+                <span>Cài đặt</span>
+            </a>
+
+            <hr>
+
+            <a href="signin.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Đăng nhập</span>
+            </a>
+
+            <a href="signup.html" class="hanime-nav-bar__link">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Đăng ký</span>
+            </a>
+        </div>
+    </nav>
+    <hr class="hanime-hr">
+    <section class="hanime-body">
+        <div class="container p-4 text-white-50">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 d-flex justify-content-center">
+                    <img src="https://animehay.club//upload/poster/3489.jpg" class="img-fluid img-thumbnail" alt="">
+                </div>
+
+                <div class="col-sm-12 col-md-8 p-4 d-flex flex-column justify-content-center">
+                    <div class="row">
+                        <div class="col">Name</div>
+                        <div class="col text-truncate" data-mdb-toggle="tooltip" data-mdb-original-title="Spy x Family">
+                            Spy x Family</div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col">Categories</div>
+
+                        <style>
+                            .film-categories {
+                                padding: 5px 1px;
+                            }
+
+                            .film-categories>a {
+                                text-align: center;
+                                margin: 0px;
+                                padding: 5px;
+                                border-radius: 5px;
+                                background-color: #262626;
+                                color: #ffffff7f;
+                                font-size: smaller;
+                            }
+                        </style>
+
+                        <div class="col d-flex flex-wrap">
+                            <div class="film-categories">
+                                <a href="">lolicon</a>
+                            </div>
+                            <div class="film-categories">
+                                <a href="">lolicon</a>
+                            </div>
+                            <div class="film-categories">
+                                <a href="">lolicon</a>
+                            </div>
+                            <div class="film-categories">
+                                <a href="">lolicon</a>
+                            </div>
+                            <div class="film-categories">
+                                <a href="">lolicon</a>
+                            </div>
+                            <div class="film-categories">
+                                <a href="">lolicon</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col">Episodes</div>
+                        <div class="col">11</div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col">Rate</div>
+                        <div class="col">4.5 / 5</div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="p-1 col col-sm-6 col-md-4">
+                            <button class="btn btn-success w-100">follow</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <h5>Description</h5>
+                <p class="text-body">
+                    Đặc vụ "Twilight" của Westalis được cử trà trộn vào nước địch để thám sát kẻ thù đang có âm mưu phá
+                    hoại nền hòa bình đông tây. Vì tính chất của nhiệm vụ, bậc thầy cải trang Twilight bắt buộc phải lập
+                    gia đình và có con thì mới có thể tiếp cận được mục tiêu. Với một kẻ chưa từng có người thân và luôn
+                    làm việc một mình, Twilight sớm tìm thấy mình mắc kẹt trong chuyện gia đình dở khóc dở cười.
+                </p>
+            </div>
+
+            <hr>
+
+            <h5 class="d-flex align-items-center">
+                Episodes
+                <div class="ms-2">
+                    <form method="post" class="p-0 m-0" action="admin">
+                        <input type="hidden" name="id" value="1">
+                        <button type="submit" class="btn btn-dark" name="action" value="create-video">
+                            <div>
+                                <i class="fa fa-plus"></i>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+            </h5>
+            <div class="row p-2 pt-0">
+
+                <div class="col-1 p-1">
+                    <a class="text-center bg-dark rounded m-0 p-1 d-block text-white-50" href="watch?id=">1</a>
+                </div>
+
+                <div class="col-1 p-1">
+                    <a class="text-center bg-dark rounded m-0 p-1 d-block text-white-50" href="watch?id=">1</a>
+                </div>
+
+                <div class="col-1 p-1">
+                    <a class="text-center bg-dark rounded m-0 p-1 d-block text-white-50" href="watch?id=">1</a>
+                </div>
+
+                <div class="col-1 p-1">
+                    <a class="text-center bg-dark rounded m-0 p-1 d-block text-white-50" href="watch?id=">1</a>
+                </div>
+
+                <div class="col-1 p-1">
+                    <a class="text-center bg-dark rounded m-0 p-1 d-block text-white-50" href="watch?id=">1</a>
+                </div>
+
+                <div class="col-1 p-1">
+                    <a class="text-center bg-dark rounded m-0 p-1 d-block text-white-50" href="watch?id=">1</a>
+                </div>
+            </div>
+    </section>
+
+    <!-- Custom JS -->
+    <script src="js/nav-bar.js"></script>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
+</body>
+
+</html>

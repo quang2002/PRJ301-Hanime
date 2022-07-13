@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package routes;
 
 import jakarta.servlet.ServletException;
@@ -14,10 +10,6 @@ import models.Procedures;
 import utilities.GlobalConstants;
 import utilities.GoogleReCaptcha;
 
-/**
- *
- * @author yuyu2
- */
 @WebServlet(urlPatterns = {"/signup"})
 public class SignupServlet extends HttpServlet {
 
