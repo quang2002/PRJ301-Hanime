@@ -2,7 +2,6 @@ package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @SQLTable(table = "Video")
