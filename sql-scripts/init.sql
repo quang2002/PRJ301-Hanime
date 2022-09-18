@@ -37,6 +37,7 @@ CREATE TABLE [User] (
 	[DOB]			DATE,
 	[Gender]		BIT NOT NULL,
 	[Phone]			VARCHAR (12),
+	[Exp]			INT DEFAULT 0,
 
 	[NotifyVideoUpload]			BIT DEFAULT 1,
 	[NotifyFriendRequest]		BIT DEFAULT 1,
@@ -70,7 +71,7 @@ CREATE TABLE [Video] (
 	[Name]			NVARCHAR (MAX),
 	[ThumbnailURL]	VARCHAR  (MAX),
 	[VideoURL]		VARCHAR  (MAX),
-	[ReleaseDate]	DATE,
+	[ReleaseDate]	DATETIME DEFAULT GETDATE(),
 	[Length]		INT,
 	[View]			BIGINT,
 
@@ -105,6 +106,7 @@ CREATE TABLE [Comment] (
 	[VideoID]		BIGINT NOT NULL,
 	[UserID]		BIGINT,
 	[Content]		NVARCHAR (MAX) NOT NULL,
+	[ReportedTime]	INT DEFAULT 0,
 
 	PRIMARY KEY		CLUSTERED ([ID] DESC),
 	FOREIGN KEY		([VideoID]) REFERENCES [Video]([ID]) ON DELETE CASCADE,
@@ -119,10 +121,21 @@ CREATE TABLE [Rate] (
 	[Rate]			INT DEFAULT 0,
 
 	PRIMARY KEY		([ID]),
+	UNIQUE			([VideoID], [UserID]),
 	FOREIGN KEY		([VideoID]) REFERENCES [Video]([ID]) ON DELETE CASCADE,
 	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE SET NULL,
 
 	CHECK ([Rate] BETWEEN 0 AND 5),
+);
+
+CREATE TABLE [Notification] (
+	[Content]		NVARCHAR (MAX),
+	[UserID]		BIGINT,
+	[IsRead]		BIT,
+	[NavLink]		VARCHAR (MAX),
+	[Time]			DATETIME DEFAULT GETDATE(),
+
+	FOREIGN KEY		([UserID]) REFERENCES [User]([ID]) ON DELETE CASCADE,
 );
 
 ----------------------------------------------
@@ -149,4 +162,33 @@ BEGIN
 		@gender,
 		'http://res.cloudinary.com/quang2002/image/upload/run6usa9xlfdzvwgywaw'
 	);
+END;
+
+GO
+CREATE PROC [sp_delete_expired_notications]
+	@expired_day		INT
+AS
+BEGIN
+	-- Delete notifications after @expired_day day(s).
+	DELETE FROM [Notification] WHERE DATEDIFF(DAY, GETDATE(), [Time]) > @expired_day;
+END;
+
+
+
+----------------------------------------------
+--                 TRIGGER                  --
+----------------------------------------------
+GO
+CREATE TRIGGER [trg_null_video_thumbnail]
+ON [Video]
+AFTER INSERT, UPDATE
+AS
+BEGIN
+	UPDATE [Video] 
+	SET [ThumbnailURL] = (
+		SELECT [Film].[ThumbnailURL]
+		FROM [Film] 
+		WHERE [Film].[ID] = [Video].[FilmID]
+	) 
+	WHERE [ThumbnailURL] IS NULL;
 END;

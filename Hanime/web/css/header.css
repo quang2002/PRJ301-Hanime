@@ -51,6 +51,7 @@
     border-radius: 0 var(--hanime-search-bar-border-radius) var(--hanime-search-bar-border-radius) 0;
     cursor: pointer;
     background-color: var(--hanime-search-bar-button-background-color);
+    border: 1px solid var(--hanime-background-color);
 }
 
 .hanime-header__notification {

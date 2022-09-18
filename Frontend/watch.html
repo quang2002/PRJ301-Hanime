@@ -136,6 +136,77 @@
                             nhất
                             hiện nay!!</strong>
                         <p class="text-white-50">242,976 views</p>
+
+                        <style>
+                            .hanime-rating {
+                                display: flex;
+                            }
+
+                            .hanime-rating__star {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        </style>
+
+                        <script>
+                            window.addEventListener('load', () => {
+                                const rates = document.querySelectorAll('.hanime-rating');
+
+                                rates.forEach(rate => {
+                                    const stars = rate.querySelectorAll('.hanime-rating__star');
+
+                                    stars.forEach((star, index) => {
+                                        star.addEventListener('mouseenter', () => {
+                                            stars.forEach((s, i) => i <= index ? s.querySelector('i').classList.add('fas') : s.querySelector('i').classList.remove('fas'));
+                                        });
+
+                                        star.addEventListener('mouseleave', () => {
+                                            stars.forEach((s, i) => i < rate.dataset.value ? s.querySelector('i').classList.add('fas') : s.querySelector('i').classList.remove('fas'));
+                                        });
+
+                                        star.addEventListener('mousedown', () => {
+                                            rate.dataset.value = star.dataset.value;
+                                        })
+                                    });
+                                })
+                            });
+                        </script>
+
+                        <div class="hanime-rating" data-value="0">
+                            <div class="hanime-rating__star" data-value="1">
+                                <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                    data-mdb-original-title="Bad" aria-label="Bad"></i>
+                            </div>
+
+                            <div class="hanime-rating__star" data-value="2">
+                                <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                    data-mdb-original-title="Poor" aria-label="Poor"></i>
+                            </div>
+
+                            <div class="hanime-rating__star" data-value="3">
+                                <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                    data-mdb-original-title="OK" aria-label="OK"></i>
+                            </div>
+
+                            <div class="hanime-rating__star" data-value="4">
+                                <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                    data-mdb-original-title="Good" aria-label="Good"></i>
+                            </div>
+
+                            <div class="hanime-rating__star" data-value="5">
+                                <i class="fa-star fa-sm text-primary far" data-mdb-toggle="tooltip"
+                                    data-mdb-original-title="Excellent" aria-label="Excellent"></i>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <form action="admin" method="post">
+                                <input type="hidden" name="id" value="">
+
+                                <button class="btn btn-success" name="action" value="edit-video-form">Edit</button>
+                                <button class="btn btn-danger" name="action" value="delete-video">Delete</button>
+                            </form>
+                        </div>
                     </div>
 
                     <hr class="m-0">
@@ -144,7 +215,7 @@
                         <h5>Comments</h5>
 
                         <script>
-                            
+
                         </script>
 
                         <div class="d-flex flex-row align-items-center mb-4">
@@ -161,8 +232,31 @@
                         </div>
                         <div class="border border-dark" id="hanime-comments">
 
-
-
+                            <div class="d-flex flex-column hanime-comment">
+                                <div class="d-flex align-items-center"><img
+                                        src="http://res.cloudinary.com/quang2002/image/upload/run6usa9xlfdzvwgywaw"
+                                        alt="avatar" width="30" height="30" class="rounded-circle m-2"><strong>Triệu
+                                        Đình Quang</strong>
+                                    <div class="border rounded p-1 m-2">
+                                        Cấp 4
+                                    </div>
+                                </div>
+                                <p class="text-white-50" style="font-size: 14px; margin-left: 45px;">hảo phim</p>
+                            </div>
+                            <div class="d-flex flex-column hanime-comment">
+                                <div class="d-flex align-items-center"><img
+                                        src="http://res.cloudinary.com/quang2002/image/upload/run6usa9xlfdzvwgywaw"
+                                        alt="avatar" width="30" height="30" class="rounded-circle m-2"><strong>Triệu
+                                        Đình Quang</strong></div>
+                                <p class="text-white-50" style="font-size: 14px; margin-left: 45px;">hay lắm</p>
+                            </div>
+                            <div class="d-flex flex-column hanime-comment">
+                                <div class="d-flex align-items-center"><img
+                                        src="http://res.cloudinary.com/quang2002/image/upload/run6usa9xlfdzvwgywaw"
+                                        alt="avatar" width="30" height="30" class="rounded-circle m-2"><strong>Triệu
+                                        Đình Quang</strong></div>
+                                <p class="text-white-50" style="font-size: 14px; margin-left: 45px;">haha</p>
+                            </div>
                         </div>
                     </div>
                 </div>

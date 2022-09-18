@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilities;
 
 import java.io.BufferedReader;
@@ -10,10 +6,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- *
- * @author yuyu2
- */
 public class GoogleReCaptcha {
 
     private String secret;
@@ -41,7 +33,7 @@ public class GoogleReCaptcha {
                 os.flush();
             }
 
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            try ( BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
                 return br.lines().anyMatch((line) -> line.contains("\"success\": true"));
             }
         } catch (Exception e) {

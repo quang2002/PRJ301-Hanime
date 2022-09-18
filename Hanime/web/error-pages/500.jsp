@@ -1,8 +1,3 @@
-<%-- 
-    Document   : 500
-    Created on : Jun 7, 2022, 3:22:48 AM
-    Author     : yuyu2
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <style>

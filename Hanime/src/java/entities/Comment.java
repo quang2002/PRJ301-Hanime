@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import com.yuyu.annotations.SQLColumn;
@@ -10,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.json.JSONObject;
 
-/**
- *
- * @author yuyu2
- */
 @SQLTable(table = "Comment")
 public class Comment extends EntityBase {
 
@@ -25,19 +17,23 @@ public class Comment extends EntityBase {
 
     @SQLColumn(column = "Content")
     public String content;
+    
+    @SQLColumn(column = "ReportedTime")
+    public int reportedTime;
 
     public Comment() {
     }
 
     public Comment(ResultSet rs) throws SQLException {
-        this(rs.getLong("ID"), rs.getLong("VideoID"), rs.getLong("UserID"), rs.getNString("Content"));
+        this(rs.getLong("ID"), rs.getLong("VideoID"), rs.getLong("UserID"), rs.getNString("Content"), rs.getInt("ReportedTime"));
     }
 
-    public Comment(Long id, Long videoId, Long userId, String content) {
+    public Comment(Long id, Long videoId, Long userId, String content, Integer reportedTime) {
         super(id);
         this.videoId = videoId;
         this.userId = userId;
         this.content = content;
+        this.reportedTime = reportedTime;
     }
 
     public Long getVideoId() {
@@ -63,8 +59,13 @@ public class Comment extends EntityBase {
     public void setContent(String content) {
         this.content = content;
     }
+    
+    public int getReportedTime(){
+        return this.reportedTime;
+    }
 
     public JSONObject toJSON() {
+        if(this.reportedTime!=0) return null;
         try {
             JSONObject object = new JSONObject();
 
@@ -72,7 +73,7 @@ public class Comment extends EntityBase {
             object.put("video_id", videoId);
             object.put("user_id", userId);
             object.put("content", content);
-
+            
             return object;
         } catch (Exception e) {
             return null;

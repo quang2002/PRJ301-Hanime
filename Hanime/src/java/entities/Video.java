@@ -1,23 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
-/**
- *
- * @author yuyu2
- */
 @SQLTable(table = "Video")
 public class Video extends EntityBase {
 
     @SQLColumn(column = "Name")
     public String name;
-    
+
     @SQLColumn(column = "ThumbnailURL")
     public String thumbnailUrl;
 
@@ -25,7 +17,7 @@ public class Video extends EntityBase {
     public String videoUrl;
 
     @SQLColumn(column = "ReleaseDate")
-    public Date releaseDate;
+    public Timestamp releaseDate;
 
     @SQLColumn(column = "Length")
     public Integer length;
@@ -39,7 +31,7 @@ public class Video extends EntityBase {
     public Video() {
     }
 
-    public Video(Long id, String name, String thumbnailUrl, String videoUrl, Date releaseDate, Integer length, Long view, Long filmId) {
+    public Video(Long id, String name, String thumbnailUrl, String videoUrl, Timestamp releaseDate, Integer length, Long view, Long filmId) {
         super(id);
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
@@ -74,11 +66,11 @@ public class Video extends EntityBase {
         this.videoUrl = videoUrl;
     }
 
-    public Date getReleaseDate() {
+    public Timestamp getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
     }
 

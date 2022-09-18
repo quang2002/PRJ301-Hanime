@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilities;
 
 import entities.User;
@@ -11,14 +7,14 @@ import java.util.HashMap;
 import models.UserModel;
 import org.json.JSONObject;
 
-/**
- *
- * @author yuyu2
- */
 public class Authentication {
 
     public static String getTokenFromCookies(Object cookies) {
-        for (Cookie cookie : (Cookie[])cookies) {
+        if (cookies == null) {
+            return null;
+        }
+
+        for (Cookie cookie : (Cookie[]) cookies) {
             if (cookie.getName().equals("token")) {
                 return cookie.getValue();
             }

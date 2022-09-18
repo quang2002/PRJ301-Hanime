@@ -7,22 +7,22 @@ class CommentWebSocket extends WebSocket {
 
     post(content) {
         this.send(JSON.stringify(
-            {
-                action: 'post',
-                video_id: this.video_id,
-                token: this.token,
-                content: content
-            }
+                {
+                    action: 'post',
+                    video_id: this.video_id,
+                    token: this.token,
+                    content: content
+                }
         ));
     }
 
     get(page) {
         this.send(JSON.stringify(
-            {
-                action: 'get',
-                video_id: this.video_id,
-                page: page
-            }
+                {
+                    action: 'get',
+                    video_id: this.video_id,
+                    page: page
+                }
         ));
     }
 }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : signup
-    Created on : Jun 11, 2022, 4:03:26 AM
-    Author     : yuyu2
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="utilities.GlobalConstants" %>
 <!DOCTYPE html>
@@ -13,7 +7,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hanime</title>
-
         <link rel="shortcut icon" href="assets/favicon.png">
 
         <!-- Custom CSS -->

@@ -20,26 +20,8 @@ import utilities.GoogleReCaptcha;
 import utilities.SMTP;
 import utilities.TokenGenerator;
 
-/**
- *
- * @author yuyu2
- */
 @WebServlet(urlPatterns = {"/forgot-password"})
 public class ForgotPasswordServlet extends HttpServlet {
-
-    private UserModel user;
-    private SMTP smtp;
-
-    @Override
-    public void init() throws ServletException {
-        try {
-            user = new UserModel();
-            smtp = new SMTP("smtp-mail.outlook.com", "587", GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
-            smtp.connect();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,6 +40,11 @@ public class ForgotPasswordServlet extends HttpServlet {
                 throw null;
             }
 
+            SMTP smtp = new SMTP(GlobalConstants.SMTP_HOST, GlobalConstants.SMTP_PORT, GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
+            smtp.connect();
+
+            UserModel user = new UserModel();
+
             User u = user.getByUsername(username);
 
             if (u == null) {
@@ -70,9 +57,9 @@ public class ForgotPasswordServlet extends HttpServlet {
             data.put("uid", u.getId());
             data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
 
-            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \nhttp://" + GlobalConstants.HOST + GlobalConstants.CONTEXT_PATH + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+            String text = "Vui lòng truy cập đường dẫn sau để cài đặt mật khẩu mới (hiệu lực trong 30 phút): \nhttp://" + GlobalConstants.HOST + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
 
-            smtp.sendMimeMessage("Hanime (No-Reply)", u.getEmail(), "[Hanime] Password Recovery", text);
+            smtp.sendMimeMessageWithThread("Hanime (No-Reply)", u.getEmail(), "[Hanime] Password Recovery", text);
         } catch (Exception e) {
             doGet(request, response);
             return;

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilities;
 
 import java.io.UnsupportedEncodingException;
@@ -17,10 +13,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-/**
- *
- * @author yuyu2
- */
 public class SMTP {
 
     private String host;
@@ -106,5 +98,17 @@ public class SMTP {
         msg.setSentDate(new Date());
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recepent, false));
         Transport.send(msg);
+    }
+
+    public void sendMimeMessageWithThread(String sender, String recepent, String subject, String text) {
+        Thread thread = new Thread(() -> {
+            try {
+                sendMimeMessage(sender, recepent, subject, text);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.start();
     }
 }

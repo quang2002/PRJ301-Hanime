@@ -1,8 +1,3 @@
-<%-- 
-    Document   : 404
-    Created on : Jun 7, 2022, 3:20:44 AM
-    Author     : yuyu2
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">

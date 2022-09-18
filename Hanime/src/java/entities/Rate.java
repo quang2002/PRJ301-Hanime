@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import com.yuyu.annotations.SQLColumn;
 import com.yuyu.annotations.SQLTable;
 
-/**
- *
- * @author yuyu2
- */
 @SQLTable(table = "Rate")
 public class Rate extends EntityBase {
 
@@ -19,7 +11,7 @@ public class Rate extends EntityBase {
 
     @SQLColumn(column = "UserID")
     public Long userId;
-    
+
     @SQLColumn(column = "Rate")
     public Integer rate;
 

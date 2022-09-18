@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,6 +9,22 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .film-categories {
+            padding: 5px;
+        }
+
+        .film-categories>a {
+            text-align: center;
+            margin: 0px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #262626;
+            color: #ffffff7f;
+            font-size: smaller;
+        }
+    </style>
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -42,8 +59,19 @@
 
         <div class="d-flex align-items-center">
             <div class="hanime-header__notification">
-                <i class="fa-solid fa-bell"></i>
-                <div class="hanime-header__notification--dot"></div>
+                <a class="dropdown" role="button" href="#" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-bell"></i>
+                    <div class="hanime-header__notification--dot"></div>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-dark p-2">
+                    <a href="#" class="dropdown-item rounded">
+                        <h6 class="fw-normal mb-0">Profile updated</h6>
+                        <small>15 minutes ago</small>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a href="notification" class="dropdown-item text-center rounded">See all notifications</a>
+                </div>
             </div>
 
             <div class="hanime-header__account">
@@ -121,7 +149,86 @@
     </nav>
     <hr class="hanime-hr">
     <section class="hanime-body">
+        <div class="container">
 
+            <!-- START: FILTER -->
+            <div class="hanime-search__filter">
+                <div>
+                    <button class="btn btn-dark" data-mdb-toggle="collapse" data-mdb-target="#collapse-filter">
+                        <i class="fa-solid fa-filter"></i>
+                        <span>Filter</span>
+                    </button>
+                </div>
+
+                <div class="collapse show mt-3" id="collapse-filter">
+                    <div class="row p-2">
+                        <div class="col-12 col-sm-4 p-2">
+                            <p class="text-white">UPLOAD DATE</p>
+                            <hr>
+                            <a href="" class="d-block text-white-50">Last hour</a>
+                            <a href="" class="d-block text-white-50">Today</a>
+                            <a href="" class="d-block text-white-50">This week</a>
+                            <a href="" class="d-block text-white-50">This month</a>
+                            <a href="" class="d-block text-white-50">This year</a>
+                        </div>
+
+                        <div class="col-12 col-sm-4 p-2">
+                            <p class="text-white">DURATION</p>
+                            <hr>
+                            <a href="" class="d-block text-white-50">Under 30 minutes</a>
+                            <a href="" class="d-block text-white-50">30-60 minutes</a>
+                            <a href="" class="d-block text-white-50">Over 1 hour</a>
+                        </div>
+
+                        <div class="col-12 col-sm-4 p-2">
+                            <p class="text-white">SORT BY</p>
+                            <hr>
+                            <a href="" class="d-block text-white-50">Upload date</a>
+                            <a href="" class="d-block text-white-50">View count</a>
+                            <a href="" class="d-block text-white-50">Rating</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: FILTER -->
+            <hr class="mt-3 mb-3">
+
+            <!-- START: LIST FILM -->
+            <div class="container-fluid">
+                <div class="text-white-50">
+                    Your search - <span class="text-danger">asdasd.,masd.asjdkl;ajsdlkasdjklaskjdlasd</span> - did not
+                    match any documents.
+                    <br>
+                    <br>
+                    Suggestions:
+                    <br>
+                    <ul>
+                        <li>Make sure that all words are spelled correctly.</li>
+                        <li>Try different keywords.</li>
+                        <li>Try more general keywords.</li>
+                        <li>Try fewer keywords.</li>
+                    </ul>
+                </div>
+
+                <a class="btn btn-sm p-0 m-2" data-mdb-toggle="tooltip" data-mdb-original-title="Cười ngu">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-md-3">
+                            <img class="img-fluid" style="object-fit: cover; object-position: center;"
+                                src="https://ichef.bbci.co.uk/news/976/cpsprodpb/F382/production/_123883326_852a3a31-69d7-4849-81c7-8087bf630251.jpg"
+                                alt="">
+                        </div>
+
+                        <div class="col-12 col-sm-8 col-md-9 mb-2 d-flex flex-column justify-content-center">
+                            <h6 class="text-truncate text-white m-0 mt-2">Cười ít thôi bạn ơi!</h6>
+
+                            <small>14 views - 5 stars</small>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <!-- END: LIST FILM -->
+        </div>
     </section>
 
     <!-- Custom JS -->

@@ -5,3 +5,15 @@
 .hanime-recommended-videos__video:hover {
     background-color: #ffffff21;
 }
+
+.hanime-rating {
+    display: flex;
+}
+
+.hanime-rating__star {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

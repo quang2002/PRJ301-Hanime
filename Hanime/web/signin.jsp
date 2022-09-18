@@ -1,9 +1,3 @@
-<%-- 
-    Document   : signin
-    Created on : Jun 11, 2022, 4:27:18 AM
-    Author     : yuyu2
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +6,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hanime</title>
-
         <link rel="shortcut icon" href="assets/favicon.png">
 
         <!-- Custom CSS -->
@@ -71,7 +64,7 @@
                                     <span class="d-flex justify-content-center">
                                         Don't have an account yet? <a href="signup">Sign up</a>
                                     </span>
-                                    
+
                                     <span class="d-flex justify-content-center">
                                         <a href="forgot-password">Forgot your password?</a>
                                     </span>
@@ -85,7 +78,7 @@
                 </div>
             </div>
         </section>
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
     </body>
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"></script>
 </html>

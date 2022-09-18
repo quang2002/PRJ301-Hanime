@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package websocket;
 
 import entities.Comment;
@@ -15,10 +11,6 @@ import org.json.JSONObject;
 import utilities.Authentication;
 import utilities.GlobalConstants;
 
-/**
- *
- * @author yuyu2
- */
 @jakarta.websocket.server.ServerEndpoint(
         value = GlobalConstants.COMMENT_WSPATH,
         decoders = {JSONDecoder.class},
@@ -63,6 +55,8 @@ public class CommentWebSocket {
 
     //--------------------------------------------------------------
     public void doGet(JSONObject request, JSONObject response) throws Exception {
+        final int pageSize = 10;
+
         CommentModel commentModel = new CommentModel();
 
         // get params from request
@@ -73,10 +67,13 @@ public class CommentWebSocket {
         response.put("size", commentModel.getCommentCount(videoId));
 
         // response comments by page to client
-        response.put("comments", commentModel.getCommentsByPage(videoId, page, 10)
-                .stream()
-                .map(comment -> new JSONObject[]{((User) comment[0]).toJSON(), ((Comment) comment[1]).toJSON()})
-                .toArray()
+        response.put("comments",
+                commentModel.getCommentsByPage(videoId, page, pageSize)
+                        .stream()
+                        .map(comment -> new JSONObject[]{
+                    comment.getKey().toJSON(),
+                    comment.getValue().toJSON()
+                }).toArray()
         );
     }
 
@@ -99,7 +96,10 @@ public class CommentWebSocket {
         commentModel.insert(comment);
 
         // response new comment to all client
-        response.put("comment", new JSONObject[]{user.toJSON(), comment.toJSON()});
+        response.put("comment", new JSONObject[]{
+            user.toJSON(),
+            comment.toJSON()
+        });
 
         // response comment count to client
         response.put("size", commentModel.getCommentCount(videoId));

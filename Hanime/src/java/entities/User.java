@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import com.yuyu.annotations.SQLColumn;
@@ -10,6 +6,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.json.JSONObject;
+import utilities.GlobalConstants;
 
 /**
  *
@@ -40,26 +37,43 @@ public class User extends EntityBase {
     @SQLColumn(column = "Phone")
     public String phone;
 
+    @SQLColumn(column = "Exp")
+    public Integer exp;
+
     @SQLColumn(column = "NotifyVideoUpload")
-    public boolean notifyVideoUpload;
+    public Boolean notifyVideoUpload;
 
     @SQLColumn(column = "NotifyFriendRequest")
-    public boolean notifyFriendRequest;
+    public Boolean notifyFriendRequest;
 
     @SQLColumn(column = "NotifyNews")
-    public boolean notifyNews;
+    public Boolean notifyNews;
 
     @SQLColumn(column = "NotifyUpdates")
-    public boolean notifyUpdates;
+    public Boolean notifyUpdates;
 
     public User() {
     }
 
     public User(ResultSet rs) throws SQLException {
-        this(rs.getLong("UserID"), rs.getString("AvatarURL"), rs.getNString("Fullname"), rs.getNString("Email"), rs.getNString("Address"), rs.getDate("DOB"), rs.getBoolean("Gender"), rs.getString("Phone"), rs.getBoolean("NotifyVideoUpload"), rs.getBoolean("NotifyFriendRequest"), rs.getBoolean("NotifyNews"), rs.getBoolean("NotifyUpdates"));
+        this(
+                rs.getLong("ID"),
+                rs.getString("AvatarURL"),
+                rs.getNString("Fullname"),
+                rs.getNString("Email"),
+                rs.getNString("Address"),
+                rs.getDate("DOB"),
+                rs.getBoolean("Gender"),
+                rs.getString("Phone"),
+                rs.getInt("Exp"),
+                rs.getBoolean("NotifyVideoUpload"),
+                rs.getBoolean("NotifyFriendRequest"),
+                rs.getBoolean("NotifyNews"),
+                rs.getBoolean("NotifyUpdates")
+        );
     }
 
-    public User(Long id, String avatarUrl, String fullname, String email, String address, Date dob, Boolean gender, String phone, boolean notifyVideoUpload, boolean notifyFriendRequest, boolean notifyNews, boolean notifyUpdates) {
+    public User(Long id, String avatarUrl, String fullname, String email, String address, Date dob, Boolean gender, String phone, Integer exp, boolean notifyVideoUpload, boolean notifyFriendRequest, boolean notifyNews, boolean notifyUpdates) {
         super(id);
         this.avatarUrl = avatarUrl;
         this.fullname = fullname;
@@ -68,6 +82,7 @@ public class User extends EntityBase {
         this.dob = dob;
         this.gender = gender;
         this.phone = phone;
+        this.exp = exp;
         this.notifyVideoUpload = notifyVideoUpload;
         this.notifyFriendRequest = notifyFriendRequest;
         this.notifyNews = notifyNews;
@@ -161,7 +176,19 @@ public class User extends EntityBase {
     public void setNotifyUpdates(boolean notifyUpdates) {
         this.notifyUpdates = notifyUpdates;
     }
-    
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getLevel() {
+        return exp / GlobalConstants.EXP_PER_LEVEL + 1;
+    }
+
     public JSONObject toJSON() {
         try {
             JSONObject object = new JSONObject();
@@ -174,7 +201,9 @@ public class User extends EntityBase {
             object.put("dob", dob);
             object.put("gender", gender);
             object.put("phone", phone);
-            
+            object.put("exp", exp);
+            object.put("level", getLevel());
+
             object.put("notify_video_upload", notifyVideoUpload);
             object.put("notify_friend_request", notifyFriendRequest);
             object.put("notify_news", notifyNews);
